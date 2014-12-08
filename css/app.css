@@ -1,5 +1,5 @@
 html, body{
-    background-color: rgba(0, 0, 0, 0);
+    background-color: transparent;
     color: lightgrey;
     padding: 10px;
 }
