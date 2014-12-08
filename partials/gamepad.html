@@ -1,0 +1,40 @@
+<ol class='gamepad' ng-click='showcontrols = !showcontrols' ng-init='showcontrols = true'>
+<li class='steering horizontal'>
+		<div class='bar' ng-style='{right: (controls.steering > 0? 50 - controls.steering * 50 : 50) + \%\, left: (controls.steering > 0? 0 : controls.steering * 50) + \%\}'></div>
+	</li>
+	<li class='boost'>
+		<div class='button' ng-class='{down: controls.boost}'>&uArr;</div>
+	</li>
+	<li class='e-brake'>
+		<div class='button' ng-class='{down: controls.ebrake}'>E</div>
+	</li>
+	<li class='brake vertical'>
+		<div class='bar' ng-style='{top: 100 - controls.brake * 100 + \%\}'></div>
+	</li>
+	<li class='gas vertical'>
+		<div class='bar' ng-style='{top: 100 - controls.gas * 100 + \%\}'></div>
+	</li>
+	<li class='shifter' ng-if='keybinds.manual'>
+		<div class='up-btn button' ng-class='{down: controls.shiftup}'>&#9650;</div>
+		<div class='down-btn button' ng-class='{down: controls.shiftdn}'>&#9660;</div>
+	</li>
+</ol>
+<div ng-if='showcontrols'>
+	Steering:
+	<input type='text' ng-value='keybinds.steering'>
+	Boost:
+	<input type='text' ng-value='keybinds.boost'>
+	E-Brake:
+	<input type='text' ng-value='keybinds.ebrake'>
+	Brake:
+	<input type='text' ng-value='keybinds.brake'>
+	Gas:
+	<input type='text' ng-value='keybinds.gas'>
+	Shift Up:
+	<input type='text' ng-value='keybinds.shiftup'>
+	Shift Down:
+	<input type='text' ng-value='keybinds.shiftdn'>
+	Show shifter:
+	<input type='checkbox' ng-value='keybinds.manual'>
+	<button type="button" ng-click='saveBindings()'>Save</button>
+</div>
