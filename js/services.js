@@ -9,7 +9,6 @@ angular.module('RacingUI.services', [])
 
         return {
             startPolling: function(name, callback, pollingTime) {
-                console.log(pollingTime);
                 if (!polls[name]) {
                     polls[name] = setInterval(callback, (pollingTime || DefaultPollingTime));
                 }
