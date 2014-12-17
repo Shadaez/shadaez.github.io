@@ -1,0 +1,33 @@
+<ol class='gamepad' ng-click='showcontrols = !showcontrols' ng-init='showcontrols = false'>
+<li class='steering horizontal'>
+		<div class='bar' ng-style='{right: (controls.steering > 0? 50 - controls.steering * 50 : 50) + "%", left: (controls.steering > 0? 0 : controls.steering * 50) + "%"}'></div>
+	</li>
+	<li class='boost'>
+		<div class='button' ng-class='{down: controls.boost}'>&uArr;</div>
+	</li>
+	<li class='e-brake'>
+		<div class='button' ng-class='{down: controls.ebrake}'>E</div>
+	</li>
+	<li class='brake vertical'>
+		<div class='bar' ng-style='{top: 100 - controls.brake * 100 + "%"}'></div>
+	</li>
+	<li class='gas vertical'>
+		<div class='bar' ng-style='{top: 100 - controls.gas * 100 + "%"}'></div>
+	</li>
+	<li class='shifter' ng-if='keybinds.manual'>
+		<div class='up-btn button' ng-class='{down: controls.shiftup}'>&#9650;</div>
+		<div class='down-btn button' ng-class='{down: controls.shiftdn}'>&#9660;</div>
+	</li>
+</ol>
+<table ng-if='showcontrols'>
+	<tr>
+		<td>Name</td><td>Type</td><td>Input</td>
+	</tr>
+	<tr ng-repeat='input in inputs'>
+		<input ng-model='input.name'><select ng-model='input.type'></select>
+		<select ng-model='input.input'>
+			<option ng-repeat='button in input.raw.buttons' value='{type: 'button', index: $index}'>Button $index</option>
+			<option ng-repeat='axis in input.raw.axes' value='{type: 'axis', index: $index}'>Axis $index</option>
+		</select>
+	</tr>
+</table>
