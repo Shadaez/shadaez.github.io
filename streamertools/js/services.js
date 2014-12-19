@@ -52,8 +52,10 @@ angular.module('StreamerUI.services', [])
 				all: dupe(d)
 			},
 			emitted = [];
+			gamepads = [gamepads[0], gamepads[1], gamepads[2], gamepads[3]];
 			setInterval(function() {
-				oldGamepads = dupe(gamepads);
+				oldGamepads = [];
+				gamepads.forEach(function(gamepad, index){oldGamepads.push({buttons: dupe(!!gamepad ? gamepad.buttons : []), axes: !!gamepad ? gamepad.axes : []});});
 				gamepads = navigator.getGamepads();
 				gamepads = [gamepads[0], gamepads[1], gamepads[2], gamepads[3]];
 				gamepads.forEach(function(gamepad, x) {

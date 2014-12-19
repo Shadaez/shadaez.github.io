@@ -30,8 +30,10 @@ var gp = function(options) {
     all: dupe(d)
   },
   emitted = [];
+  gamepads = [gamepads[0], gamepads[1], gamepads[2], gamepads[3]];
   setInterval(function() {
-    oldGamepads = dupe(gamepads);
+    oldGamepads = [];
+    gamepads.forEach(function(gamepad, index){oldGamepads.push({buttons: dupe(!!gamepad ? gamepad.buttons : []), axes: !!gamepad ? gamepad.axes : []});});
     gamepads = navigator.getGamepads();
     gamepads = [gamepads[0], gamepads[1], gamepads[2], gamepads[3]];
     gamepads.forEach(function(gamepad, x) {
@@ -154,11 +156,11 @@ z = 0;
 
 gamepad(0).axis().any(function(val, index){
   if(index == 0){
-    y += val;
+    y += val*10;
   } else if(index == 1) {
-    x += val;
+    x += val*10;
   } else if(index == 2){
-    z += val;
+    z += val*10;
   }
   cube.style.webkitAnimation = cube.style.mozAnimation = cube.style.animation = 'none';
   cube.style.transform = 'rotateX('+ x +'deg) rotateY(' + y + 'deg) rotateZ(' + z +'deg)';
