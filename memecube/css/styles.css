@@ -6,12 +6,21 @@ body {
 }
 
 .container {
-  top: 20vh;
+  top: -20vh;
   width: 50vh;
   height: 50vh;
   position: relative;
   margin: auto auto;
   perspective: 80vh;
+}
+
+.hyper.container {
+  top: 20vh;
+  width: 50vh;
+  height: 50vh;
+  position: relative;
+  margin: auto auto;
+  perspective: 20vh;
 }
 
 .loading{
@@ -26,17 +35,43 @@ body {
   -moz-transition: background-color .5s ease;
 }
 
-#cube {
+.cube {
   width: 50vh;
   height: 50vh;
   position: absolute;
   animation: spincube 10s infinite;
+  transition: transform 1s ease;
   -webkit-animation: spincube 10s linear infinite;
   -moz-animation: spincube 10s linear infinite;
   transform-style: preserve-3d;
 }
 
-#cube figure {
+.hyper .cube{
+  -webkit-animation-direction: reverse;
+}
+
+.cube.one{
+  transform: rotateY(0deg);
+}
+
+.cube.two{
+  transform: rotateY(90deg);
+}
+
+.cube.three{
+  transform: rotateY(90deg) rotateX(-90deg) rotateZ(-90deg);
+}
+.cube.four{
+  transform: rotateY(0deg) rotateX(-180deg);
+}
+.cube.five{
+  transform: rotateY(0deg) rotateX(-270deg);
+}
+.cube.six{
+  transform: rotateY(-90deg) rotateX(-360deg);
+}
+
+.cube figure {
   width: 50vh;
   height: 50vh;
   display: block;
@@ -45,17 +80,20 @@ body {
   margin: 0;
 }
 
-#cube figure {
-  background-size: cover;
+.cube figure {
+  background-size: contain;
   background-color: white;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-image .5s ease;
 }
 
-#cube .front  { background-image: url("../img/1.jpg"); transform: rotateY(   0deg ) translateZ( 25vh ); }
-#cube .back   { background-image: url("../img/2.jpg"); transform: rotateX( 180deg ) translateZ( 25vh ); }
-#cube .right  { background-image: url("../img/3.jpg"); transform: rotateY(  90deg ) translateZ( 25vh ); }
-#cube .left   { background-image: url("../img/4.jpg"); transform: rotateY( -90deg ) translateZ( 25vh ); }
-#cube .top    { background-image: url("../img/5.jpg"); transform: rotateX(  90deg ) translateZ( 25vh ); }
-#cube .bottom { background-image: url("../img/6.gif"); transform: rotateX( -90deg ) translateZ( 25vh ); }
+.cube .front  { background-image: url("../img/1.jpg"); transform: rotateY(   0deg ) translateZ( 25vh ); }
+.cube .back   { background-image: url("../img/2.jpg"); transform: rotateX( 180deg ) translateZ( 25vh ); }
+.cube .right  { background-image: url("../img/3.jpg"); transform: rotateY(  90deg ) translateZ( 25vh ); }
+.cube .left   { background-image: url("../img/4.jpg"); transform: rotateY( -90deg ) translateZ( 25vh ); }
+.cube .top    { background-image: url("../img/5.jpg"); transform: rotateX(  90deg ) translateZ( 25vh ); }
+.cube .bottom { background-image: url("../img/6.gif"); transform: rotateX( -90deg ) translateZ( 25vh ); }
 
 @keyframes spincube{
   0% {transform: rotateY(0deg) rotateX(0deg);}

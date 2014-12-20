@@ -146,27 +146,69 @@ var gp = function(options) {
       }
     }
   };
-},
-
+};
 gamepad = gp(),
-cube = document.getElementById('cube'),
+cube = $('.cube')[0],
+hypercube = $('.cube')[1],
 x = 0,
 y = 0,
-z = 0;
+x2 = 0,
+y2 = 0,
+i = 0,
+classes = ['one', 'two', 'three', 'four', 'five', 'six'];
+
 
 gamepad(0).axis().any(function(val, index){
   if(index == 0){
-    y += val*10;
+    y += val*2;
   } else if(index == 1) {
-    x += val*10;
+    x += val*2;
   } else if(index == 2){
-    z += val*10;
+    y2 += val*2;
+  } else if(index == 3){
+    x2 += val*2
   }
   cube.style.webkitAnimation = cube.style.mozAnimation = cube.style.animation = 'none';
-  cube.style.transform = 'rotateX('+ x +'deg) rotateY(' + y + 'deg) rotateZ(' + z +'deg)';
+  cube.style.transform = 'rotateX('+ x +'deg) rotateY(' + y + 'deg)';
+  cube.style.transition = hypercube.style.transition = 'none';
+  hypercube.style.webkitAnimation = hypercube.style.mozAnimation = hypercube.style.animation = 'none';
+  hypercube.style.transform = 'rotateX('+ x2 +'deg) rotateY(' + y2 + 'deg)';
 });
 
 setTimeout(function(){
-  var ls = document.getElementsByClassName('loading')[0];
-  ls.style.backgroundColor = 'transparent';
+   var ls = document.getElementsByClassName('loading')[0];
+   ls.style.backgroundColor = 'transparent';
 }, 1500)
+
+//setInterval(function(){$('#cube')[0].className = classes[i%6]; i++},1000)
+
+
+$(function(){
+  var memes = [],
+      clientID = "3ef6e0470dd624b",
+      meme = {},
+      faces = ['front', 'back', 'left', 'right', 'top', 'bottom'];
+      i = 0,
+      page = 0;
+  function leMeme(){
+    var img = new Image();
+    if(memes.length < 20){
+      $.ajax({headers: {"Authorization": "Client-ID " + clientID}, url: "https://api.imgur.com/3/g/memes/viral/" + page}).done(function(res){
+        memes = memes.concat(res.data);
+        page++;
+      });
+    }
+
+    if (memes.length > 0){
+      meme = memes.pop();
+      if(meme.nsfw != true){
+        img.onload = function(){$('.' + faces[i%6]).css({'background-image': 'url('+meme.link+')'})};
+        img.src = meme.link;
+        i++;
+      } else {
+        leMeme();
+      }
+    }
+  }
+  setInterval(leMeme, 3000);
+});
