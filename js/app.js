@@ -36,10 +36,10 @@ window.requestAnimationFrame(requestData);
 
 function requestData(){
   socket.emit('data');
-  $topAccel.text(topAccel);
-  $topSpeed.text(topSpeed);
-  $accel.text(accel);
-  $speed.text(speed);
+  $topAccel.text(Math.round(topAccel * 3.6) + ' KPH');
+  $topSpeed.text(Math.round(topSpeed * 3.6) + ' KPH');
+  $accel.text(Math.round(accel * 3.6) + ' KPH');
+  $speed.text(Math.round(speed * 3.6) + ' KPH');
   window.requestAnimationFrame(requestData);
 };
 
