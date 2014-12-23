@@ -39,7 +39,7 @@ function requestData(){
   $topAccel.text(topAccel);
   $topSpeed.text(topSpeed);
   $accel.text(accel);
-  $speed.text(Math.floor(data.position[0]/65536) + ' ' + Math.floor(data.position[1]/65536) + ' ' + Math.floor(data.position[2]/65536));
+  $speed.text(speed);
   window.requestAnimationFrame(requestData);
 };
 
