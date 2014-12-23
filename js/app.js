@@ -36,10 +36,10 @@ window.requestAnimationFrame(requestData);
 
 function requestData(){
   socket.emit('data');
-  $topAccel.text(Math.round(topAccel * 3.6) + ' KPH');
-  $topSpeed.text(Math.round(topSpeed * 3.6) + ' KPH');
-  $accel.text(Math.round(accel * 3.6) + ' KPH');
-  $speed.text(Math.round(speed * 3.6) + ' KPH');
+  $topAccel.text(Math.round(topAccel * 2.23694) + ' MPH');
+  $topSpeed.text(Math.round(topSpeed * 2.23694) + ' MPH');
+  $accel.text(Math.round(accel * 2.23694) + ' MPH');
+  $speed.text(Math.round(speed * 2.23694) + ' MPH');
   window.requestAnimationFrame(requestData);
 };
 
