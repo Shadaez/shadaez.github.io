@@ -1,4 +1,4 @@
-//if you're looking at this know it's just shitty code and will be rewritten with angular
+//if you're looking at this know it's just shitty code while i figure out maths
 var socket = io("http://192.249.61.132/"),
 speed = 0,
 topSpeed = 0,
@@ -17,7 +17,9 @@ data = {position: []},
 time = Date.now(),
 oldDate = time,
 pos = {x: 0, y: 0},
-angles = {};
+angles = {},
+maxWidth,
+maxHeight;
 socket.on('data', function(d){
   if(d){
     data = d;
@@ -37,11 +39,13 @@ socket.on('data', function(d){
     angles.b = 90;
     angles.c = 180 - (angles.b + angles.a);
     pos.x = pos.x || 0; pos.y = pos.y || 0;
+    maxHeight = $(window).height();
+    maxWidth = $(window).width();
     pos.x += (speed * Math.sin(angles.c * Math.PI / 180))/Math.sin(angles.b) * ((time - oldTime) / 1000);
     pos.y += (speed * Math.sin(angles.a * Math.PI / 180))/Math.sin(angles.b) * ((time - oldTime) / 1000);
     $car.css({'transform':
     'rotatez('+ -(d.orientation[0] * 180/Math.PI) + 'deg)' + 'rotatex('+ (d.orientation[1] * 180/Math.PI)  +'deg)' + 'rotatey('+ (d.orientation[2]* 180/Math.PI) + 'deg)',
-    'top': (pos.x % 100 + 100)%100 + '%', 'left': (pos.y % 100 + 100)%100 + '%'});
+    'top': (pos.x*2 % maxHeight + maxHeight)%maxHeight - 60 + 'px', 'left': (pos.y*2 % maxWidth + maxWidth)%maxWidth - 25 + 'px'});
     $arrowAccel.css({'transform': 'rotatey('+ -(deg[0] - 90) +'deg)' + 'rotatex('+ deg[1] +'deg)' + 'rotatez('+ (deg[2] - 90) +'deg)','height': accel +'px'});
     //$car.css({'transform': 'rotatez('+ -(vel[0] - 90) +'deg)'})
     $arrowVel.css({'transform': 'rotatez('+ (vel[0] - 90) +'deg)' + 'rotatex('+ vel[1] +'deg)' + 'rotatey('+ (vel[2] - 90) + 'deg)','height': speed +'px'});
