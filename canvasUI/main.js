@@ -218,10 +218,10 @@ var canvas = document.getElementById('canvas'),
     microAjax(canvas.dataset.pollUrl, function(res){
       data = res.split(',');
       values = {
-        altitude: values.altitude + 1;
-        speed: values.speed + 1;
-        roll: values.roll + 1;
-        pitch: values.pitch + 1;
+        altitude: values.altitude + 1,
+        speed: values.speed + 1,
+        roll: values.roll + 1,
+        pitch: values.pitch + 1,
         users: data.splice(4, data.length)
       };
     });
