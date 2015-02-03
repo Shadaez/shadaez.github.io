@@ -89,7 +89,7 @@ var canvas = document.getElementById('canvas'),
       ctx.clip();
         //speed ticks
         ctx.fillStyle = 'white';
-        ctx.font = '20px consolas';
+        ctx.font = '20px freemono';
         var speed = Math.floor((values.speed - 1) / 10)*10 - 50,
             modSpeed = Math.round((values.speed / (10 / 48)%ticks.height + ticks.height)*2)/2%ticks.height;
             modSpeed = modSpeed === 0 ? 48 : modSpeed;
@@ -115,7 +115,7 @@ var canvas = document.getElementById('canvas'),
         ctx.stroke();
       ctx.restore();
       ctx.fillStyle = 'white';
-      ctx.font = '20px consolas';
+      ctx.font = '20px freemono';
       ctx.fillText(Math.floor(values.speed), 96 - ticks.width - 5 - Math.floor(values.speed).toString().length * 11, (canvas.height - this.translation[1])/2 + 0.5 + 6);
       //alt
       rectHelper(canvas.width - 96 - 6.5, 6.5, 96, canvas.height - 6.5 * 2 - this.translation[1], 'rgba(0, 0, 0, .5)', 'white');
@@ -124,7 +124,7 @@ var canvas = document.getElementById('canvas'),
       ctx.clip();
         //altitude ticks
         ctx.fillStyle = 'white';
-        ctx.font = '20px consolas';
+        ctx.font = '20px freemono';
         var altitude = Math.floor((values.altitude - 1) / 200)*200 - 1000,
             modAlt =  Math.round((values.altitude / (200 / 48)%ticks.height + ticks.height)*2)/2%ticks.height;
             modAlt = modAlt === 0 ? 48 : modAlt;
@@ -150,10 +150,10 @@ var canvas = document.getElementById('canvas'),
         ctx.stroke();
       ctx.restore();
       ctx.fillStyle = 'white';
-      ctx.font = '20px consolas';
+      ctx.font = '20px freemono';
       ctx.fillText(Math.floor(values.altitude), canvas.width - 96 - 6.5 + ticks.width + 77 - Math.floor(values.altitude).toString().length * 11, (canvas.height - this.translation[1])/2 + 0.5 + 6);
       rectHelper(canvas.width - 6.5 - 7 - 33, (canvas.height - this.translation[1])/2 - 10, 33, 20, 'black');
-      ctx.font = '16px consolas';
+      ctx.font = '16px freemono';
       ctx.fillStyle = 'white';
       var alt = Math.floor(values.altitude).toString().split('');
       ctx.fillText((alt.length > 2 ? alt[alt.length - 3] : 0), canvas.width - 96 - 5.5 + ticks.width + 44, (canvas.height - this.translation[1])/2 + 0.5 + 5);
@@ -161,7 +161,7 @@ var canvas = document.getElementById('canvas'),
       ctx.save();
       ctx.clip();
       ctx.fillStyle = 'white';
-      ctx.font = '20px consolas';
+      ctx.font = '20px freemono';
       ctx.fillText('00', canvas.width - 6 - 7 - 23, (canvas.height - this.translation[1])/2 + 7 - 40 + values.altitude / (50/20)%40);
       ctx.fillText('50', canvas.width - 6 - 7 - 23, (canvas.height - this.translation[1])/2 + 7 - 20 + values.altitude / (50/20)%40);
       ctx.fillText('00', canvas.width - 6 - 7 - 23, (canvas.height - this.translation[1])/2 + 7 + 0  + values.altitude / (50/20)%40);
@@ -171,7 +171,7 @@ var canvas = document.getElementById('canvas'),
       //users
       rectHelper(0, -this.translation[1], canvas.width, this.translation[1], 'black');
       rectHelper(6.5, 6.5, 96, 28, 'black', 'white');
-      ctx.font = '20px consolas';
+      ctx.font = '20px freemono';
       ctx.fillStyle = 'white';
       ctx.fillText(values.users[2], 6.5 + 3, 6.5 + 28 - 8);
       rectHelper(canvas.width - 96 - 6.5, 6.5, 96, 28, 'black', 'white');
@@ -191,7 +191,7 @@ var canvas = document.getElementById('canvas'),
     layers.push(new Layer(function(canvas, ctx){
       ctx.lineWidth = '3';
       //users again
-      ctx.font = '20px consolas';
+      ctx.font = '20px freemono';
       for(var i = 0, width = canvas.width/5; i < 5; i++){
         rectHelper(width * i + width/2 - 48, -this.translation[1] + 1, 96, 28, 'black', 'white');
         ctx.fillStyle = 'white';
@@ -218,10 +218,10 @@ var canvas = document.getElementById('canvas'),
     microAjax(canvas.dataset.pollUrl, function(res){
       data = res.split(',');
       values = {
-        altitude: data[0],
-        speed: data[1],
-        roll: data[2],
-        pitch: data[3],
+        altitude: values.altitude + 1;
+        speed: values.speed + 1;
+        roll: values.roll + 1;
+        pitch: values.pitch + 1;
         users: data.splice(4, data.length)
       };
     });
