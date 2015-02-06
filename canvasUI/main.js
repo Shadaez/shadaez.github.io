@@ -262,10 +262,11 @@ function updateCanvas(){
         main();
       ctx.restore();
   //}
-  window.requestAnimationFrame(updateCanvas);
+  //window.requestAnimationFrame(updateCanvas);
 }
 
 function mod(num, mod){
   return (num%mod + mod)%mod
 }
-window.requestAnimationFrame(updateCanvas);
+setInterval(updateCanvas, 16);
+//window.requestAnimationFrame(updateCanvas);
