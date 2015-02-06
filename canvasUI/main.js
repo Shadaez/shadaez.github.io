@@ -21,6 +21,26 @@ var canvas = document.getElementById('canvas'),
 
 ctx.font = '19 freemono';
 ctx.fillStyle = 'white';
+setInterval(getData, canvas.dataset.pollFrequency);
+function getData(){
+  microAjax(canvas.dataset.pollUrl, function(d){
+    oldData = data;
+    data = d.split(',');
+    values = {
+      // //Altitude,Airspeed,Roll,Pitch,USER1,USER2,USER3,USER4,USER5,USER6,USER7,USER8,USER9
+      // alt: parseInt(data[0]),
+      // speed: parseInt(data[1]),
+      // roll: parseInt(data[2]),
+      // pitch: parseInt(data[3]),
+      // users: data.splice(4, data.length)
+      alt:values.alt+1,
+      speed:values.speed+1,
+      roll:values.roll+1,
+      pitch:values.pitch+1,
+      users: data.splice(3, data.length)
+    }
+  });
+}
 function main(){
 ctx.save();
   //CENTER
