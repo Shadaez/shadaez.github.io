@@ -1,9 +1,17 @@
 <html>
   <head>
   </head>
-  <body style='padding: 0; margin: 0' >
+  <body style='padding: 0; margin: 0; position: relative; width: 800px;'>
     <!-- poll frequency is in milliseconds - to convert to frames per second divide 1000 by *fps wanted*, poll url is the url to the csv -->
-    <canvas id='canvas' width='800' height='400' data-poll-frequency="33" data-poll-url="./reading.csv" style="background: #00bae9;">
+    <canvas id='canvasbg' width='400' height='200' style="transform: scale(2); position: absolute; left: 200px; top: 100px;  background: #00bae9;">
+    </canvas>
+    <canvas id='canvas' width='800' height='400' data-poll-frequency="33" data-poll-url="./reading.csv" style='position: absolute'>
+    </canvas>
+    <canvas id='canvasrot' width='400' height='300' style="position: absolute; left: 200px; top: 50px;">
+    </canvas>
+    <canvas id='canvasspeed' width='96' height='354' style='position: absolute; left: 8px; top:38px;'>
+    </canvas>
+    <canvas id='canvasalt' width='96' height='354' style='position: absolute; right: 8px; top: 38px;'>
     </canvas>
     <script src="microajax.min.js"></script>
     <script src='main.js'></script>
