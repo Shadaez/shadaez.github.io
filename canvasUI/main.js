@@ -69,6 +69,7 @@ ctx.save();
   ctx.beginPath();
     drawPlane();
   ctx.closePath();
+  ctx.strokeStyle = 'black';
   ctx.fill();
   ctx.stroke();
   ctx.rotate(TORAD * 90);
@@ -253,20 +254,17 @@ values.pitch = -401;
 function updateCanvas(){
   //if(oldData != data){
     oldData = data;
-      ctx.save();
       ctx.clearRect(0, TOPHEIGHT, canvas.width, canvas.height - TOPHEIGHT);
         values.roll += 1;
         values.pitch += 1;
         values.altitude = 88888;
         values.speed = 888;
         main();
-      ctx.restore();
   //}
-  //window.requestAnimationFrame(updateCanvas);
+  window.requestAnimationFrame(updateCanvas);
 }
 
 function mod(num, mod){
   return (num%mod + mod)%mod
 }
-setInterval(updateCanvas, 16);
-//window.requestAnimationFrame(updateCanvas);
+window.requestAnimationFrame(updateCanvas);
