@@ -108,9 +108,9 @@ ctx.save();
   ctx.beginPath();
     ctx.rect(PADDING, PADDING + TOPHEIGHT * 2, BARWIDTH, canvas.height - PADDING * 2 - TOPHEIGHT * 3);
   ctx.closePath();
-  ctx.globalAlpha = '0.5'
+  //ctx.globalAlpha = '0.5'
   ctx.fill();
-  ctx.globalAlpha = '1';
+  //ctx.globalAlpha = '1';
   ctx.stroke();
   ctx.clip();
   ctx.fillStyle = 'white';
@@ -152,9 +152,9 @@ ctx.save();
   ctx.beginPath();
     ctx.rect(canvas.width - PADDING - BARWIDTH, PADDING + TOPHEIGHT * 2, BARWIDTH, canvas.height - PADDING * 2 - TOPHEIGHT * 3);
   ctx.closePath();
-  ctx.globalAlpha = '0.5';
+  //ctx.globalAlpha = '0.5';
   ctx.fill();
-  ctx.globalAlpha = '1';
+  //ctx.globalAlpha = '1';
   ctx.stroke();
   ctx.clip();
   ctx.translate(canvas.width - PADDING - BARWIDTH, ((canvas.height + TOPHEIGHT)/2));
