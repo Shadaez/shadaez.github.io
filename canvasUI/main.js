@@ -1,13 +1,15 @@
 var canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d'),
+    body = document.getElementsByTagName('body')[0],
     layers = [],
     values = {
       speed: 0,
-      altitude: 0,
+      altitude: 1,
       pitch: 0,
       roll: 25,
       users: ['USER1', 'USER2', 'USER3', 'USER4', 'USER5', 'USER6', 'USER7', 'USER8', 'USER9']
     },
+    preRenderedText = {},
     oldData, data, i, xCache, yCache, textCache,
     BARWIDTH = 96,
     TOPHEIGHT = 30,
@@ -15,17 +17,19 @@ var canvas = document.getElementById('canvas'),
     FONTWIDTH = 11,
     PADDING = 7.5,
     TORAD = Math.PI / 180,
+    FONTSTRING = 'freemono',
     MAXSIZE = (Math.sqrt(Math.pow(canvas.height, 2) + Math.pow(canvas.width, 2)) + 1),
     rollTicks = [-60, -45, -20, -10, 10, 20, 45, 60];
     ctx.lineWidth = '2';
 
-ctx.font = '19 freemono';
+ctx.font = FONTHEIGHT + ' ' + FONTSTRING;
 ctx.fillStyle = 'white';
 setInterval(getData, canvas.dataset.pollFrequency);
 function getData(){
-  microAjax(canvas.dataset.pollUrl, function(d){
+  //microAjax(canvas.dataset.pollUrl, function(d){
     oldData = data;
-    data = d.split(',');
+    data = data+1;
+    //data = d.split(',');
     values = {
       // //Altitude,Airspeed,Roll,Pitch,USER1,USER2,USER3,USER4,USER5,USER6,USER7,USER8,USER9
       // alt: parseInt(data[0]),
@@ -33,13 +37,13 @@ function getData(){
       // roll: parseInt(data[2]),
       // pitch: parseInt(data[3]),
       // users: data.splice(4, data.length)
-      alt:values.alt+1,
-      speed:values.speed+1,
-      roll:values.roll+1,
-      pitch:values.pitch+1,
-      users: data.splice(3, data.length)
+      altitude: values.altitude+1,
+      speed: mod(values.speed+1, 500),
+      roll: values.roll+1,
+      pitch: mod(values.pitch + 1 , 360),
+      users: values.users//data.splice(3, data.length)
     }
-  });
+  //});
 }
 function main(){
 ctx.save();
@@ -66,7 +70,7 @@ ctx.save();
   ctx.beginPath();
   ctx.rect((-canvas.width/4), (-canvas.height/4), (canvas.width/2), (canvas.height/2));
   ctx.closePath();
-  ctx.clip();
+  //ctx.clip();
   ctx.beginPath();
   for(i = 0; i < 12; i++){
     xCache = (mod(values.pitch * 4 + ((i-6) * 20), 40) < 20 ? 50 : 25);
@@ -74,8 +78,8 @@ ctx.save();
     if(xCache != 25){
       textCache = (Math.floor((values.pitch + 5 * (6 - i)) / 10) * 10).toString();
       textCache = textCache === '0' ? '' : textCache;
-      ctx.fillText(textCache, xCache, (yCache + FONTHEIGHT/4));
-      ctx.fillText(textCache, (-xCache - (textCache.length * FONTWIDTH) - 3), (yCache + FONTHEIGHT/4));
+      ctx.drawImage(getCachedText(textCache), xCache, (yCache + FONTHEIGHT/4));
+      ctx.drawImage(getCachedText(textCache), (-xCache - (textCache.length * FONTWIDTH) - 3), (yCache + FONTHEIGHT/4));
     }
     ctx.moveTo(-xCache, yCache);
     ctx.lineTo(xCache , yCache);
@@ -143,7 +147,7 @@ ctx.save();
       ctx.lineTo(0, yCache);
       if(xCache != -6){
         textCache = (Math.floor((values.speed + 5 * (8 - i)) / 10) * 10).toString();
-        ctx.fillText(textCache, 0 - 12 - 3 - textCache.length * FONTWIDTH, (yCache + FONTHEIGHT/4));
+        ctx.drawImage(getCachedText(textCache), 0 - 12 - 3 - textCache.length * FONTWIDTH, (yCache + FONTHEIGHT/4));
       }
   }
   ctx.closePath();
@@ -187,7 +191,7 @@ ctx.save();
     ctx.lineTo(0, yCache);
     if(xCache != 6){
       textCache = (Math.floor((values.altitude - mod(values.altitude / 4, 25) / 25 * 50 + 100 * (8 - i)) / 200) * 200);
-      ctx.fillText(textCache, 0 + 12 + 3, (yCache + FONTHEIGHT/4));
+      ctx.drawImage(getCachedText(textCache), 0 + 12 + 3, (yCache + FONTHEIGHT/4));
     }
   }
   ctx.closePath();
@@ -199,7 +203,7 @@ ctx.save();
   ctx.fill();
   ctx.stroke();
   ctx.fillStyle = 'white';
-  ctx.fillText((values.altitude), 12 + 3 + FONTWIDTH * 5 - FONTWIDTH * (values.altitude).toString().length, (FONTHEIGHT/4 + 2));
+  ctx.fillText(values.altitude, 12 + 3 + FONTWIDTH * 5 - FONTWIDTH * (values.altitude).toString().length, Math.round(TOPHEIGHT/4));
   ctx.fillStyle = 'black';
   ctx.beginPath();
     ctx.rect(12 + 3 + FONTWIDTH * 2, (-FONTHEIGHT/2), (FONTWIDTH * 3.5), FONTHEIGHT);
@@ -207,14 +211,12 @@ ctx.save();
   ctx.fill();
   ctx.clip();
   ctx.fillStyle = 'white';
-  ctx.font = (FONTHEIGHT * 0.75) + ' ' + ctx.font.split(' ')[1];
-  ctx.fillText((values.altitude).toString().split('')[(values.altitude).toString().length - 3] || '', (12 + 4 + FONTWIDTH * 2.1), (FONTHEIGHT*0.75/4 + 2));
-  ctx.font = (FONTHEIGHT * 1.1) + ' ' + ctx.font.split(' ')[1];
-  ctx.fillText('00', 12 + 3 + FONTWIDTH * 3 , (FONTHEIGHT/4 + 2 + -40 + values.altitude / (50/20)%40));
-  ctx.fillText('50', 12 + 3 + FONTWIDTH * 3 , (FONTHEIGHT/4 + 2 + -20 + values.altitude / (50/20)%40));
-  ctx.fillText('00', 12 + 3 + FONTWIDTH * 3 , (FONTHEIGHT/4 + 2 + 0  + values.altitude / (50/20)%40));
-  ctx.fillText('50', 12 + 3 + FONTWIDTH * 3 , (FONTHEIGHT/4 + 2 + 20 + values.altitude / (50/20)%40));
-  ctx.fillText('00', 12 + 3 + FONTWIDTH * 3 , (FONTHEIGHT/4 + 2 + 40 + values.altitude / (50/20)%40));
+  ctx.drawImage(getCachedText((values.altitude).toString().split('')[(values.altitude).toString().length - 3] || '', Math.round(FONTHEIGHT * 0.75)), (12 + 4 + FONTWIDTH * 2.1), Math.round(-FONTHEIGHT*0.75/2 - 7));
+  ctx.drawImage(getCachedText('00', Math.round(FONTHEIGHT * 1.1)), 12 + 3 + FONTWIDTH * 3 , Math.round(-TOPHEIGHT + -40 + values.altitude / (50/20)%40));
+  ctx.drawImage(getCachedText('50', Math.round(FONTHEIGHT * 1.1)), 12 + 3 + FONTWIDTH * 3 , Math.round(-TOPHEIGHT + -20 + values.altitude / (50/20)%40));
+  ctx.drawImage(getCachedText('00', Math.round(FONTHEIGHT * 1.1)), 12 + 3 + FONTWIDTH * 3 , Math.round(-TOPHEIGHT + 0  + values.altitude / (50/20)%40));
+  ctx.drawImage(getCachedText('50', Math.round(FONTHEIGHT * 1.1)), 12 + 3 + FONTWIDTH * 3 , Math.round(-TOPHEIGHT + 20 + values.altitude / (50/20)%40));
+  ctx.drawImage(getCachedText('00', Math.round(FONTHEIGHT * 1.1)), 12 + 3 + FONTWIDTH * 3 , Math.round(-TOPHEIGHT + 40 + values.altitude / (50/20)%40));
   ctx.restore();
   for(i = 0; i < 5; i++){
     ctx.beginPath();
@@ -222,12 +224,12 @@ ctx.save();
     ctx.closePath();
     ctx.stroke();
     ctx.fillStyle = 'white';
-    ctx.fillText(values.users[4+i], (canvas.width/5 * i + canvas.width/5/2 - BARWIDTH/2 + 3), FONTHEIGHT + 3);
+    ctx.drawImage(getCachedText(values.users[4+i]), (canvas.width/5 * i + canvas.width/5/2 - BARWIDTH/2 + 3), Math.round(FONTHEIGHT/4));
   }
-  ctx.fillText(values.users[2], PADDING + 3, TOPHEIGHT + PADDING + FONTHEIGHT + 3);
-  ctx.fillText(values.users[3], canvas.width - PADDING - BARWIDTH + 3, TOPHEIGHT + PADDING + FONTHEIGHT + 3);
-  ctx.fillText(values.users[1], canvas.width - PADDING - BARWIDTH + 3, canvas.height - PADDING - TOPHEIGHT + FONTHEIGHT + 3);
-  ctx.fillText(values.users[0], PADDING + 3, canvas.height - PADDING - TOPHEIGHT + FONTHEIGHT + 3);
+  ctx.drawImage(getCachedText(values.users[2]), PADDING + 3, TOPHEIGHT + PADDING + 3);
+  ctx.drawImage(getCachedText(values.users[3]), canvas.width - PADDING - BARWIDTH + 3, TOPHEIGHT + PADDING + 3);
+  ctx.drawImage(getCachedText(values.users[1]), canvas.width - PADDING - BARWIDTH + 3, canvas.height - PADDING - TOPHEIGHT + 3);
+  ctx.drawImage(getCachedText(values.users[0]), PADDING + 3, canvas.height - PADDING - TOPHEIGHT + 3);
 }
 
 function tickLabel(neg){
@@ -274,17 +276,32 @@ values.pitch = -401;
 function updateCanvas(){
   if(oldData != data){
     oldData = data;
-      ctx.clearRect(0, TOPHEIGHT, canvas.width, canvas.height - TOPHEIGHT);
-        values.roll += 1;
-        values.pitch += 1;
-        values.altitude = 88888;
-        values.speed = 888;
-        main();
+    ctx.clearRect(0, TOPHEIGHT, canvas.width, canvas.height - TOPHEIGHT);
+    main();
   }
   window.requestAnimationFrame(updateCanvas);
 }
 
-function mod(num, mod){
-  return (num%mod + mod)%mod
+function getCachedText(string, size){
+  string = string.toString() || string;
+  size = size || FONTHEIGHT;
+  if(Object.keys(preRenderedText).indexOf(string + 'text') != -1){
+    return preRenderedText[string + 'text' + size];
+  } else {
+    var cacheCanvas = document.createElement("canvas");
+    cacheCanvas.width = string.length * FONTWIDTH + FONTWIDTH;
+    cacheCanvas.height = FONTHEIGHT;
+    var cacheCtx = cacheCanvas.getContext('2d');
+    cacheCtx.font = size + ' ' + FONTSTRING;
+    cacheCtx.fillStyle = 'white';
+    cacheCtx.fillText(string, 0, FONTHEIGHT);
+    preRenderedText[string + size] = cacheCanvas;
+    return cacheCanvas;
+  }
 }
+
+function mod(num, mod){
+  return (num%mod + mod)%mod;
+}
+
 window.requestAnimationFrame(updateCanvas);
