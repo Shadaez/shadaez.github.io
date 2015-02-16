@@ -198,7 +198,7 @@ ctx.save();
   ctx.fill();
   ctx.stroke();
   ctx.fillStyle = 'white';
-  ctx.fillText(values.altitude, 12 + 6 + FONTWIDTH * 5 - FONTWIDTH * (values.altitude).toString().length, Math.round(TOPHEIGHT/4));
+  ctx.fillText(values.altitude, 12 + 3 + FONTWIDTH * 5 - FONTWIDTH * (values.altitude).toString().length, Math.round(TOPHEIGHT/4));
   ctx.fillStyle = 'black';
   ctx.beginPath();
     ctx.rect(12 + 3 + FONTWIDTH * 2, (-FONTHEIGHT/2), (FONTWIDTH * 3.5), FONTHEIGHT);
