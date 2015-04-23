@@ -1,0 +1,115 @@
+<html ng-app='donger'>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js'></script>
+    <script>
+    var parts = [
+      ["", "├┬┴┬┴", "⊹", "Zzzzzzz", "†", "⌐■-■", "✡", "┬───┬", "҉̛༽̨҉҉", "༼ ༽", "┬──┬﻿", "̿ ̿ ̿ ̿’̿’̵з", "♫", "♪", "✿", "( . ( . )", "ð", "╰⋃╯", "̿̿ ̿̿ ̿’̿’̵͇̿̿з=","━╤デ╦︻", "├┬"],
+      ["╰", "ヽ", "ﾉ", "ノ", "∩", "੧", "⋋", "⋌", "ლ", "╭∩╮", "⊃", "つ", "ᕙ", "ᕕ", "୧", "┌", "└", "ʋ", "ง", "凸", "ᕦ", "へ", "ᓄ", "¯\\_", "╚═", "〜", "┌∩┐", "c", "╮", "乁", "ԅ", "o͡͡͡╮", "ノ⌒.", "/╲/\\╭"],
+      ["(", "[", "༼", "ʕ", "໒(", "|", "⁞", "།", "〳", "╏", "║", "▐", "░", "▒"],
+      ["", "⊹", "†", "✡", "♫", "♪", "✿", "ð"],
+      [".", "✿", "˵", ",", "*", "”", "=", "~", "∗", ":", "•́", "•̀", "￣", "ݓ", "✖", "･", "՞", "﹒", "﹒︣", "︣", "⌣", "́", "⁰", "❛", "¯͒", "¯", "͒", "´", "`", "ཀ", "༎ຶ", "ຈ", "O", "͡", "◕", "-", "͠°", "°͠", "⇀", "↼", "ಥ", "☯", "͝°", "°", "ಠ", "ಠ", "ಠೃ", "ರ", "ರೃ", "ರ", "◕", "˙", "◔", "͡°", "□", "⌐", "▀", "・", "◉", "‾́", "-", "⊙", "◐", "◖", "◗", "◑", "ヘ", "¬", "≖", "̿̿", "̿", "･ิ", "ิ", "◔", "ʘ̆", "ʘ", "☉", ";", "͡■", "■͡", "͡°", "°͡", "͡ຈ", "ຈ͡", "ຈ", "͡◕", "◕͡", "◕", "°", "◉", "͡", "º", "͡;", "͡☉", "°", "͜ಠ", "͡ʘ", "͡’", "•", "^", "◕", "▀̿", "ʘ͡", "–", "❛", "x", "ᴼ", "＾", "˘", "۞", "◯", "๑", "͡ᵔ", "͡°", "°", "͒", "σ", "✪", "♥", "❛ั", "•̀", "•́", "☉", "͠ຈ", "╥", "ᵒ̌", "ಡ", "͡°̲", "ᵕ", "ି", "ୖ", "ଵ", "்", "౦", "್", "ಠ", "ര", "ි", "ᓀ", "ᓂ", "⊡", "⊙", "⊚", "⊘", "⊗", "☯", "¤"],
+      ["_", "ਊ", "︿", "o", "〜", "〰", "∧", "Д", "۝", "ڡ", "ʖ", "͜ʖ", "ل͜", "-", "‸", "⌂", "ل͟", "﹏", "益", "‿", "o", "ʖ̯", "Ĺ̯", "͜ʟ", "д", "ᗜ", "ᴥ", "ل", "ω", "◞౪◟", "౪", "‸", "෴", "﹏ु", "_ʖ", "-", "͜ر", "ں", "┏ل͜┓", "ヮ", "͜ ʖ", "Ĺ̯", "▽", "▃", "౪", "ₒ", "_̀", "ε", "~͜ʖ~", "□", "◡", "3", "_ʖ", "͟ʖ", "ڡ", "◯", "ʖ̫", "╭ ͟ʖ╮", "╭͜ʖ╮", "͟ل͜", "۝", "~", "͜ʖ", "(oo)", "▾"],
+      [".", "✿", "˵", ",", "*", "”", "=", "~", "∗", ":", "•́", "•̀", "￣", "ݓ", "✖", "･", "՞", "﹒", "﹒︣", "︣", "⌣", "́", "⁰", "❛", "¯͒", "¯", "͒", "´", "`", "ཀ", "༎ຶ", "ຈ", "O", "͡", "◕", "-", "͠°", "°͠", "⇀", "↼", "ಥ", "☯", "͝°", "°", "ಠ", "ಠ", "ಠೃ", "ರ", "ರೃ", "ರ", "◕", "˙", "◔", "͡°", "□", "⌐", "▀", "・", "◉", "‾́", "-", "⊙", "◐", "◖", "◗", "◑", "ヘ", "¬", "≖", "̿̿", "̿", "･ิ", "ิ", "◔", "ʘ̆", "ʘ", "☉", ";", "͡■", "■͡", "͡°", "°͡", "͡ຈ", "ຈ͡", "ຈ", "͡◕", "◕͡", "◕", "°", "◉", "͡", "º", "͡;", "͡☉", "°", "͜ಠ", "͡ʘ", "͡’", "•", "^", "◕", "▀̿", "ʘ͡", "–", "❛", "x", "ᴼ", "＾", "˘", "۞", "◯", "๑", "͡ᵔ", "͡°", "°", "͒", "σ", "✪", "♥", "❛ั", "•̀", "•́", "☉", "͠ຈ", "╥", "ᵒ̌", "ಡ", "͡°̲", "ᵕ", "ି", "ୖ", "ଵ", "்", "౦", "್", "ಠ", "ര", "ි", "ᓀ", "ᓂ", "⊡", "⊙", "⊚", "⊘", "⊗", "☯", "¤"],
+      ["", "⊹", "†", "✡", "♫", "♪", "✿", "ð"],
+      [")", "]", "༽", "ʔ", ")७", "|", "⁞", "།", "〵", "╏", "║", "▐", "░", "▒"],
+      ["╯", "ﾉ", "ヽ", "ノ", "∩", "੭", "⋌", "⋋", "ლ", "╭∩╮", "⊃", "つ", "ᕗ", "ᕤ", "୨", "┐", "┘", "ʋ", "ง", "凸", "ᕤ", "へ", "ᓄ", "_/¯",  "═╝", "〜", "┌∩┐", "c", "╮", "ㄏ", "ԅ", "╭o͡͡͡", "ノ⌒.", "╮/\╱﻿\\"],
+      ["", "┬┴┬┴┤", "⊹", "︻̷┻̿═━一", "━☆ﾟ.*･｡ﾟ", "︵┻━┻", "Zzzzzzz", "†", "⌐■-■", "✡", "/̵͇̿̿/’̿’̿ ̿", "︵ ส็็็็็็็ส", "┬───┬", "҉̛༽̨҉҉", "༼ ༽", "┬──┬﻿", "♫", "♪", "✿", "( . ( . )", "ð", "✂", "╰⋃╯", "-]—-", "︵ ǝʞoɾ ǝɯɐs", "┣▇▇▇═──", "├┬", "¤=[]:::::>", "⌒.[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅]"]
+    ];
+
+    angular.module('donger', ['donger', 'dongerController']);
+
+    angular.module('dongerController', [])
+      .controller('dongerController', function($scope) {
+        var $inputs = angular.element('.select input');
+        $scope.donger = '';
+        $scope.arms = $scope.body = $scope.eyes = false;
+        $scope.facing = 'forward';
+        $inputs.each(function(i) {
+          $(this).attr('min', 0);
+          $(this).attr('max', (parts[i].length == 0 ? 0 : parts[i].length - 1));
+        });
+        $inputs.on('input', updateDonger);
+        $scope.radioChange = function(){updateDonger();};
+        function updateDonger() {
+          var id = $(this).attr('id');
+          if(id){
+            var substr = id.substring(0, id.length-1);
+
+            if(((substr == 'arm' && !$scope.arms) || (substr == 'head' && !$scope.body) || (substr == 'eye' && !$scope.eyes))){
+              $('#' + substr + (id[id.length-1] == '1'? '2' : '1')).val($(this).val());
+            }
+          }
+          var dongz = [];
+          $inputs.each(function(i) {
+            dongz.push(parts[i][this.value]);
+          });
+          var holder;
+          if($scope.facing == 'left'){
+            holder = dongz[8];
+            dongz[8] = dongz[9];
+            dongz[9] = holder;
+          } else if ($scope.facing == 'right'){
+            holder = dongz[2];
+            dongz[2] = dongz[1];
+            dongz[1] = holder;
+          }
+          $scope.donger = dongz.join('​');
+          if(id){$scope.$apply();}
+        };
+        updateDonger();
+      });
+    </script>
+    <style>
+    .select input[type=range] {
+      -webkit-appearance: slider-vertical;
+      writing-mode: bt-lr;
+      width: 40px;
+      height: 250px;
+    }
+    .select{
+      margin: auto;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
+    .container{
+      width: 600px;
+      margin: auto;
+    }
+    #output{
+      width: 100%;
+      text-align: center;
+      line-height: 100%;
+      height: 52px;
+      font-size: 32px;
+    }
+    </style>
+  </head>
+  <body>
+  <div class='container' ng-controller='dongerController'>
+    <input id='output' type='text' ng-model='donger'>
+    <div class='select'>
+      <input id='accessory1' type='range' value=0>
+      <input id='arm1' type='range' value=0>
+      <input id='head1' type='range' value=0>
+      <input id='headAccessory1' type='range' value=0>
+      <input id='eye1' type='range' value=0>
+      <input id='mouth' type='range' value=0>
+      <input id='eye2' type='range' value=0>
+      <input id='headAccessory2' type='range' value=0>
+      <input id='head2' type='range' value=0>
+      <input id='arm2' type='range' value=0>
+      <input id='accessory2' type='range' value=0>
+    </div>
+    Independant Arms: <input type='checkbox' ng-model='arms'>
+    Independant Body: <input type='checkbox' ng-model='body'>
+    Independant Eyes: <input type='checkbox' ng-model='eyes'>
+    <br>
+    Style:
+    <input type='radio' name='type' ng-model='facing' value='forward' ng-change="radioChange()"> Facing Forward
+    <input type='radio' name='type' ng-model='facing' value='left' ng-change="radioChange()"> Facing Left
+    <input type='radio' name='type' ng-model='facing' value='right' ng-change="radioChange()"> Facing Right
+  </div>
+  </body></html>
