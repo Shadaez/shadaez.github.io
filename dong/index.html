@@ -4,112 +4,1898 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js'></script>
     <script>
-    var parts = [
-      ["", "├┬┴┬┴", "⊹", "Zzzzzzz", "†", "⌐■-■", "✡", "┬───┬", "҉̛༽̨҉҉", "༼ ༽", "┬──┬﻿", "̿ ̿ ̿ ̿’̿’̵з", "♫", "♪", "✿", "( . ( . )", "ð", "╰⋃╯", "̿̿ ̿̿ ̿’̿’̵͇̿̿з=","━╤デ╦︻", "├┬"],
-      ["╰", "ヽ", "ﾉ", "ノ", "∩", "੧", "⋋", "⋌", "ლ", "╭∩╮", "⊃", "つ", "ᕙ", "ᕕ", "୧", "┌", "└", "ʋ", "ง", "凸", "ᕦ", "へ", "ᓄ", "¯\\_", "╚═", "〜", "┌∩┐", "c", "╮", "乁", "ԅ", "o͡͡͡╮", "ノ⌒.", "/╲/\\╭"],
-      ["(", "[", "༼", "ʕ", "໒(", "|", "⁞", "།", "〳", "╏", "║", "▐", "░", "▒"],
-      ["", "⊹", "†", "✡", "♫", "♪", "✿", "ð"],
-      [".", "✿", "˵", ",", "*", "”", "=", "~", "∗", ":", "•́", "•̀", "￣", "ݓ", "✖", "･", "՞", "﹒", "﹒︣", "︣", "⌣", "́", "⁰", "❛", "¯͒", "¯", "͒", "´", "`", "ཀ", "༎ຶ", "ຈ", "O", "͡", "◕", "-", "͠°", "°͠", "⇀", "↼", "ಥ", "☯", "͝°", "°", "ಠ", "ಠ", "ಠೃ", "ರ", "ರೃ", "ರ", "◕", "˙", "◔", "͡°", "□", "⌐", "▀", "・", "◉", "‾́", "-", "⊙", "◐", "◖", "◗", "◑", "ヘ", "¬", "≖", "̿̿", "̿", "･ิ", "ิ", "◔", "ʘ̆", "ʘ", "☉", ";", "͡■", "■͡", "͡°", "°͡", "͡ຈ", "ຈ͡", "ຈ", "͡◕", "◕͡", "◕", "°", "◉", "͡", "º", "͡;", "͡☉", "°", "͜ಠ", "͡ʘ", "͡’", "•", "^", "◕", "▀̿", "ʘ͡", "–", "❛", "x", "ᴼ", "＾", "˘", "۞", "◯", "๑", "͡ᵔ", "͡°", "°", "͒", "σ", "✪", "♥", "❛ั", "•̀", "•́", "☉", "͠ຈ", "╥", "ᵒ̌", "ಡ", "͡°̲", "ᵕ", "ି", "ୖ", "ଵ", "்", "౦", "್", "ಠ", "ര", "ි", "ᓀ", "ᓂ", "⊡", "⊙", "⊚", "⊘", "⊗", "☯", "¤"],
-      ["_", "ਊ", "︿", "o", "〜", "〰", "∧", "Д", "۝", "ڡ", "ʖ", "͜ʖ", "ل͜", "-", "‸", "⌂", "ل͟", "﹏", "益", "‿", "o", "ʖ̯", "Ĺ̯", "͜ʟ", "д", "ᗜ", "ᴥ", "ل", "ω", "◞౪◟", "౪", "‸", "෴", "﹏ु", "_ʖ", "-", "͜ر", "ں", "┏ل͜┓", "ヮ", "͜ ʖ", "Ĺ̯", "▽", "▃", "౪", "ₒ", "_̀", "ε", "~͜ʖ~", "□", "◡", "3", "_ʖ", "͟ʖ", "ڡ", "◯", "ʖ̫", "╭ ͟ʖ╮", "╭͜ʖ╮", "͟ل͜", "۝", "~", "͜ʖ", "(oo)", "▾"],
-      [".", "✿", "˵", ",", "*", "”", "=", "~", "∗", ":", "•́", "•̀", "￣", "ݓ", "✖", "･", "՞", "﹒", "﹒︣", "︣", "⌣", "́", "⁰", "❛", "¯͒", "¯", "͒", "´", "`", "ཀ", "༎ຶ", "ຈ", "O", "͡", "◕", "-", "͠°", "°͠", "⇀", "↼", "ಥ", "☯", "͝°", "°", "ಠ", "ಠ", "ಠೃ", "ರ", "ರೃ", "ರ", "◕", "˙", "◔", "͡°", "□", "⌐", "▀", "・", "◉", "‾́", "-", "⊙", "◐", "◖", "◗", "◑", "ヘ", "¬", "≖", "̿̿", "̿", "･ิ", "ิ", "◔", "ʘ̆", "ʘ", "☉", ";", "͡■", "■͡", "͡°", "°͡", "͡ຈ", "ຈ͡", "ຈ", "͡◕", "◕͡", "◕", "°", "◉", "͡", "º", "͡;", "͡☉", "°", "͜ಠ", "͡ʘ", "͡’", "•", "^", "◕", "▀̿", "ʘ͡", "–", "❛", "x", "ᴼ", "＾", "˘", "۞", "◯", "๑", "͡ᵔ", "͡°", "°", "͒", "σ", "✪", "♥", "❛ั", "•̀", "•́", "☉", "͠ຈ", "╥", "ᵒ̌", "ಡ", "͡°̲", "ᵕ", "ି", "ୖ", "ଵ", "்", "౦", "್", "ಠ", "ര", "ි", "ᓀ", "ᓂ", "⊡", "⊙", "⊚", "⊘", "⊗", "☯", "¤"],
-      ["", "⊹", "†", "✡", "♫", "♪", "✿", "ð"],
-      [")", "]", "༽", "ʔ", ")७", "|", "⁞", "།", "〵", "╏", "║", "▐", "░", "▒"],
-      ["╯", "ﾉ", "ヽ", "ノ", "∩", "੭", "⋌", "⋋", "ლ", "╭∩╮", "⊃", "つ", "ᕗ", "ᕤ", "୨", "┐", "┘", "ʋ", "ง", "凸", "ᕤ", "へ", "ᓄ", "_/¯",  "═╝", "〜", "┌∩┐", "c", "╮", "ㄏ", "ԅ", "╭o͡͡͡", "ノ⌒.", "╮/\╱﻿\\"],
-      ["", "┬┴┬┴┤", "⊹", "︻̷┻̿═━一", "━☆ﾟ.*･｡ﾟ", "︵┻━┻", "Zzzzzzz", "†", "⌐■-■", "✡", "/̵͇̿̿/’̿’̿ ̿", "︵ ส็็็็็็็ส", "┬───┬", "҉̛༽̨҉҉", "༼ ༽", "┬──┬﻿", "♫", "♪", "✿", "( . ( . )", "ð", "✂", "╰⋃╯", "-]—-", "︵ ǝʞoɾ ǝɯɐs", "┣▇▇▇═──", "├┬", "¤=[]:::::>", "⌒.[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅]"]
-    ];
+    var parts = {
+      "leftAccessory": [
+        {
+          "val": "",
+          "safe": true
+        },
+        {
+          "val": "├┬┴┬┴",
+          "safe": true
+        },
+        {
+          "val": "⊹",
+          "safe": true
+        },
+        {
+          "val": "Zzzzzzz",
+          "safe": true
+        },
+        {
+          "val": "†",
+          "safe": true
+        },
+        {
+          "val": "⌐■-■",
+          "safe": true
+        },
+        {
+          "val": "✡",
+          "safe": true
+        },
+        {
+          "val": "┬───┬",
+          "safe": true
+        },
+        {
+          "val": "҉̛༽̨҉҉",
+          "safe": true
+        },
+        {
+          "val": "༼ ༽",
+          "safe": true
+        },
+        {
+          "val": "┬──┬﻿",
+          "safe": true
+        },
+        {
+          "val": "̿ ̿ ̿ ̿’̿’̵з",
+          "safe": true
+        },
+        {
+          "val": "♫",
+          "safe": true
+        },
+        {
+          "val": "♪",
+          "safe": true
+        },
+        {
+          "val": "✿",
+          "safe": true
+        },
+        {
+          "val": "( . ( . )",
+          "safe": true
+        },
+        {
+          "val": "ð",
+          "safe": true
+        },
+        {
+          "val": "╰⋃╯",
+          "safe": true
+        },
+        {
+          "val": "̿̿ ̿̿ ̿’̿’̵͇̿̿з=",
+          "safe": true
+        },
+        {
+          "val": "━╤デ╦︻",
+          "safe": true
+        },
+        {
+          "val": "├┬",
+          "safe": true
+        }
+      ],
+      "leftArm": [
+        {
+          "val": "╰",
+          "safe": true
+        },
+        {
+          "val": "ヽ",
+          "safe": true
+        },
+        {
+          "val": "ﾉ",
+          "safe": true
+        },
+        {
+          "val": "ノ",
+          "safe": true
+        },
+        {
+          "val": "∩",
+          "safe": true
+        },
+        {
+          "val": "੧",
+          "safe": true
+        },
+        {
+          "val": "⋋",
+          "safe": true
+        },
+        {
+          "val": "⋌",
+          "safe": true
+        },
+        {
+          "val": "ლ",
+          "safe": true
+        },
+        {
+          "val": "╭∩╮",
+          "safe": true
+        },
+        {
+          "val": "⊃",
+          "safe": true
+        },
+        {
+          "val": "つ",
+          "safe": true
+        },
+        {
+          "val": "ᕙ",
+          "safe": true
+        },
+        {
+          "val": "ᕕ",
+          "safe": true
+        },
+        {
+          "val": "୧",
+          "safe": true
+        },
+        {
+          "val": "┌",
+          "safe": true
+        },
+        {
+          "val": "└",
+          "safe": true
+        },
+        {
+          "val": "ʋ",
+          "safe": true
+        },
+        {
+          "val": "ง",
+          "safe": true
+        },
+        {
+          "val": "凸",
+          "safe": true
+        },
+        {
+          "val": "ᕦ",
+          "safe": true
+        },
+        {
+          "val": "へ",
+          "safe": true
+        },
+        {
+          "val": "ᓄ",
+          "safe": true
+        },
+        {
+          "val": "¯\\_",
+          "safe": true
+        },
+        {
+          "val": "╚═",
+          "safe": true
+        },
+        {
+          "val": "〜",
+          "safe": true
+        },
+        {
+          "val": "┌∩┐",
+          "safe": true
+        },
+        {
+          "val": "c",
+          "safe": true
+        },
+        {
+          "val": "╮",
+          "safe": true
+        },
+        {
+          "val": "乁",
+          "safe": true
+        },
+        {
+          "val": "ԅ",
+          "safe": true
+        },
+        {
+          "val": "o͡͡͡╮",
+          "safe": true
+        },
+        {
+          "val": "ノ⌒.",
+          "safe": true
+        },
+        {
+          "val": "/╲/\\╭",
+          "safe": true
+        },
+        {
+          "val": "",
+          "safe": true
+        }
+      ],
+      "leftBody": [
+        {
+          "val": "(",
+          "safe": true
+        },
+        {
+          "val": "[",
+          "safe": true
+        },
+        {
+          "val": "༼",
+          "safe": true
+        },
+        {
+          "val": "ʕ",
+          "safe": true
+        },
+        {
+          "val": "໒(",
+          "safe": true
+        },
+        {
+          "val": "|",
+          "safe": true
+        },
+        {
+          "val": "⁞",
+          "safe": true
+        },
+        {
+          "val": "།",
+          "safe": true
+        },
+        {
+          "val": "〳",
+          "safe": true
+        },
+        {
+          "val": "╏",
+          "safe": true
+        },
+        {
+          "val": "║",
+          "safe": true
+        },
+        {
+          "val": "▐",
+          "safe": true
+        },
+        {
+          "val": "░",
+          "safe": true
+        },
+        {
+          "val": "▒",
+          "safe": true
+        }
+      ],
+      "faceAccessory": [
+        {
+          "val": "",
+          "safe": true
+        },
+        {
+          "val": "⊹",
+          "safe": true
+        },
+        {
+          "val": "†",
+          "safe": true
+        },
+        {
+          "val": "✡",
+          "safe": true
+        },
+        {
+          "val": "♫",
+          "safe": true
+        },
+        {
+          "val": "♪",
+          "safe": true
+        },
+        {
+          "val": "✿",
+          "safe": true
+        },
+        {
+          "val": "ð",
+          "safe": true
+        }
+      ],
+      "mouth": [
+        {
+          "val": "_",
+          "safe": true
+        },
+        {
+          "val": "ਊ",
+          "safe": true
+        },
+        {
+          "val": "︿",
+          "safe": true
+        },
+        {
+          "val": "o",
+          "safe": true
+        },
+        {
+          "val": "〜",
+          "safe": true
+        },
+        {
+          "val": "〰",
+          "safe": true
+        },
+        {
+          "val": "∧",
+          "safe": true
+        },
+        {
+          "val": "Д",
+          "safe": true
+        },
+        {
+          "val": "۝",
+          "safe": true
+        },
+        {
+          "val": "ڡ",
+          "safe": true
+        },
+        {
+          "val": "ʖ",
+          "safe": true
+        },
+        {
+          "val": "͜ʖ",
+          "safe": true
+        },
+        {
+          "val": "ل͜",
+          "safe": true
+        },
+        {
+          "val": "-",
+          "safe": true
+        },
+        {
+          "val": "‸",
+          "safe": true
+        },
+        {
+          "val": "⌂",
+          "safe": true
+        },
+        {
+          "val": "ل͟",
+          "safe": true
+        },
+        {
+          "val": "﹏",
+          "safe": true
+        },
+        {
+          "val": "益",
+          "safe": true
+        },
+        {
+          "val": "‿",
+          "safe": true
+        },
+        {
+          "val": "o",
+          "safe": true
+        },
+        {
+          "val": "ʖ̯",
+          "safe": true
+        },
+        {
+          "val": "Ĺ̯",
+          "safe": true
+        },
+        {
+          "val": "͜ʟ",
+          "safe": true
+        },
+        {
+          "val": "д",
+          "safe": true
+        },
+        {
+          "val": "ᗜ",
+          "safe": true
+        },
+        {
+          "val": "ᴥ",
+          "safe": true
+        },
+        {
+          "val": "ل",
+          "safe": true
+        },
+        {
+          "val": "ω",
+          "safe": true
+        },
+        {
+          "val": "◞౪◟",
+          "safe": true
+        },
+        {
+          "val": "౪",
+          "safe": true
+        },
+        {
+          "val": "‸",
+          "safe": true
+        },
+        {
+          "val": "෴",
+          "safe": true
+        },
+        {
+          "val": "﹏ु",
+          "safe": true
+        },
+        {
+          "val": "_ʖ",
+          "safe": true
+        },
+        {
+          "val": "-",
+          "safe": true
+        },
+        {
+          "val": "͜ر",
+          "safe": true
+        },
+        {
+          "val": "ں",
+          "safe": true
+        },
+        {
+          "val": "┏ل͜┓",
+          "safe": true
+        },
+        {
+          "val": "ヮ",
+          "safe": true
+        },
+        {
+          "val": "͜ ʖ",
+          "safe": true
+        },
+        {
+          "val": "Ĺ̯",
+          "safe": true
+        },
+        {
+          "val": "▽",
+          "safe": true
+        },
+        {
+          "val": "▃",
+          "safe": true
+        },
+        {
+          "val": "౪",
+          "safe": true
+        },
+        {
+          "val": "ₒ",
+          "safe": true
+        },
+        {
+          "val": "_̀",
+          "safe": true
+        },
+        {
+          "val": "ε",
+          "safe": true
+        },
+        {
+          "val": "~͜ʖ~",
+          "safe": true
+        },
+        {
+          "val": "□",
+          "safe": true
+        },
+        {
+          "val": "◡",
+          "safe": true
+        },
+        {
+          "val": "3",
+          "safe": true
+        },
+        {
+          "val": "_ʖ",
+          "safe": true
+        },
+        {
+          "val": "͟ʖ",
+          "safe": true
+        },
+        {
+          "val": "ڡ",
+          "safe": true
+        },
+        {
+          "val": "◯",
+          "safe": true
+        },
+        {
+          "val": "ʖ̫",
+          "safe": true
+        },
+        {
+          "val": "╭ ͟ʖ╮",
+          "safe": true
+        },
+        {
+          "val": "╭͜ʖ╮",
+          "safe": true
+        },
+        {
+          "val": "͟ل͜",
+          "safe": true
+        },
+        {
+          "val": "۝",
+          "safe": true
+        },
+        {
+          "val": "~",
+          "safe": true
+        },
+        {
+          "val": "͜ʖ",
+          "safe": true
+        },
+        {
+          "val": "(oo)",
+          "safe": true
+        },
+        {
+          "val": "▾",
+          "safe": true
+        }
+      ],
+      "rightBody": [
+        {
+          "val": ")",
+          "safe": true
+        },
+        {
+          "val": "]",
+          "safe": true
+        },
+        {
+          "val": "༽",
+          "safe": true
+        },
+        {
+          "val": "ʔ",
+          "safe": true
+        },
+        {
+          "val": ")७",
+          "safe": true
+        },
+        {
+          "val": "|",
+          "safe": true
+        },
+        {
+          "val": "⁞",
+          "safe": true
+        },
+        {
+          "val": "།",
+          "safe": true
+        },
+        {
+          "val": "〵",
+          "safe": true
+        },
+        {
+          "val": "╏",
+          "safe": true
+        },
+        {
+          "val": "║",
+          "safe": true
+        },
+        {
+          "val": "▐",
+          "safe": true
+        },
+        {
+          "val": "░",
+          "safe": true
+        },
+        {
+          "val": "▒",
+          "safe": true
+        }
+      ],
+      "rightArm": [
+        {
+          "val": "╯",
+          "safe": true
+        },
+        {
+          "val": "ﾉ",
+          "safe": true
+        },
+        {
+          "val": "ヽ",
+          "safe": true
+        },
+        {
+          "val": "ノ",
+          "safe": true
+        },
+        {
+          "val": "∩",
+          "safe": true
+        },
+        {
+          "val": "੭",
+          "safe": true
+        },
+        {
+          "val": "⋌",
+          "safe": true
+        },
+        {
+          "val": "⋋",
+          "safe": true
+        },
+        {
+          "val": "ლ",
+          "safe": true
+        },
+        {
+          "val": "╭∩╮",
+          "safe": true
+        },
+        {
+          "val": "⊃",
+          "safe": true
+        },
+        {
+          "val": "つ",
+          "safe": true
+        },
+        {
+          "val": "ᕗ",
+          "safe": true
+        },
+        {
+          "val": "ᕤ",
+          "safe": true
+        },
+        {
+          "val": "୨",
+          "safe": true
+        },
+        {
+          "val": "┐",
+          "safe": true
+        },
+        {
+          "val": "┘",
+          "safe": true
+        },
+        {
+          "val": "ʋ",
+          "safe": true
+        },
+        {
+          "val": "ง",
+          "safe": true
+        },
+        {
+          "val": "凸",
+          "safe": true
+        },
+        {
+          "val": "ᕤ",
+          "safe": true
+        },
+        {
+          "val": "へ",
+          "safe": true
+        },
+        {
+          "val": "ᓄ",
+          "safe": true
+        },
+        {
+          "val": "_/¯",
+          "safe": true
+        },
+        {
+          "val": "═╝",
+          "safe": true
+        },
+        {
+          "val": "〜",
+          "safe": true
+        },
+        {
+          "val": "┌∩┐",
+          "safe": true
+        },
+        {
+          "val": "c",
+          "safe": true
+        },
+        {
+          "val": "╮",
+          "safe": true
+        },
+        {
+          "val": "ㄏ",
+          "safe": true
+        },
+        {
+          "val": "ԅ",
+          "safe": true
+        },
+        {
+          "val": "╭o͡͡͡",
+          "safe": true
+        },
+        {
+          "val": "ノ⌒.",
+          "safe": true
+        },
+        {
+          "val": "╮/╱﻿\\",
+          "safe": true
+        },
+        {
+          "val": "",
+          "safe": true
+        }
+      ],
+      "rightAccessory": [
+        {
+          "val": "",
+          "safe": true
+        },
+        {
+          "val": "┬┴┬┴┤",
+          "safe": true
+        },
+        {
+          "val": "⊹",
+          "safe": true
+        },
+        {
+          "val": "︻̷┻̿═━一",
+          "safe": true
+        },
+        {
+          "val": "━☆ﾟ.*･｡ﾟ",
+          "safe": true
+        },
+        {
+          "val": "︵┻━┻",
+          "safe": true
+        },
+        {
+          "val": "Zzzzzzz",
+          "safe": true
+        },
+        {
+          "val": "†",
+          "safe": true
+        },
+        {
+          "val": "⌐■-■",
+          "safe": true
+        },
+        {
+          "val": "✡",
+          "safe": true
+        },
+        {
+          "val": "/̵͇̿̿/’̿’̿ ̿",
+          "safe": true
+        },
+        {
+          "val": "︵ ส็็็็็็็ส",
+          "safe": true
+        },
+        {
+          "val": "┬───┬",
+          "safe": true
+        },
+        {
+          "val": "҉̛༽̨҉҉",
+          "safe": true
+        },
+        {
+          "val": "༼ ༽",
+          "safe": true
+        },
+        {
+          "val": "┬──┬﻿",
+          "safe": true
+        },
+        {
+          "val": "♫",
+          "safe": true
+        },
+        {
+          "val": "♪",
+          "safe": true
+        },
+        {
+          "val": "✿",
+          "safe": true
+        },
+        {
+          "val": "( . ( . )",
+          "safe": true
+        },
+        {
+          "val": "ð",
+          "safe": true
+        },
+        {
+          "val": "✂",
+          "safe": true
+        },
+        {
+          "val": "╰⋃╯",
+          "safe": true
+        },
+        {
+          "val": "-]—-",
+          "safe": true
+        },
+        {
+          "val": "︵ ǝʞoɾ ǝɯɐs",
+          "safe": true
+        },
+        {
+          "val": "┣▇▇▇═──",
+          "safe": true
+        },
+        {
+          "val": "├┬",
+          "safe": true
+        },
+        {
+          "val": "¤=[]:::::>",
+          "safe": true
+        },
+        {
+          "val": "⌒.[̲̅$̲̅(̲̅ ͡° ͜ʖ ͡°̲̅)̲̅$̲̅]",
+          "safe": true
+        }
+      ],
+      eye: [
+        {
+          "val": ".",
+          "safe": true
+        },
+        {
+          "val": "✿",
+          "safe": true
+        },
+        {
+          "val": "˵",
+          "safe": true
+        },
+        {
+          "val": ",",
+          "safe": true
+        },
+        {
+          "val": "*",
+          "safe": true
+        },
+        {
+          "val": "”",
+          "safe": true
+        },
+        {
+          "val": "=",
+          "safe": true
+        },
+        {
+          "val": "~",
+          "safe": true
+        },
+        {
+          "val": "∗",
+          "safe": true
+        },
+        {
+          "val": ":",
+          "safe": true
+        },
+        {
+          "val": "•́",
+          "safe": true
+        },
+        {
+          "val": "•̀",
+          "safe": true
+        },
+        {
+          "val": "￣",
+          "safe": true
+        },
+        {
+          "val": "ݓ",
+          "safe": true
+        },
+        {
+          "val": "✖",
+          "safe": true
+        },
+        {
+          "val": "･",
+          "safe": true
+        },
+        {
+          "val": "՞",
+          "safe": true
+        },
+        {
+          "val": "﹒",
+          "safe": true
+        },
+        {
+          "val": "﹒︣",
+          "safe": true
+        },
+        {
+          "val": "︣",
+          "safe": true
+        },
+        {
+          "val": "⌣",
+          "safe": true
+        },
+        {
+          "val": "́",
+          "safe": true
+        },
+        {
+          "val": "⁰",
+          "safe": true
+        },
+        {
+          "val": "❛",
+          "safe": true
+        },
+        {
+          "val": "¯͒",
+          "safe": true
+        },
+        {
+          "val": "¯",
+          "safe": true
+        },
+        {
+          "val": "͒",
+          "safe": true
+        },
+        {
+          "val": "´",
+          "safe": true
+        },
+        {
+          "val": "`",
+          "safe": true
+        },
+        {
+          "val": "ཀ",
+          "safe": true
+        },
+        {
+          "val": "༎ຶ",
+          "safe": true
+        },
+        {
+          "val": "ຈ",
+          "safe": true
+        },
+        {
+          "val": "O",
+          "safe": true
+        },
+        {
+          "val": "͡",
+          "safe": true
+        },
+        {
+          "val": "◕",
+          "safe": true
+        },
+        {
+          "val": "-",
+          "safe": true
+        },
+        {
+          "val": "͠°",
+          "safe": true
+        },
+        {
+          "val": "°͠",
+          "safe": true
+        },
+        {
+          "val": "⇀",
+          "safe": true
+        },
+        {
+          "val": "↼",
+          "safe": true
+        },
+        {
+          "val": "ಥ",
+          "safe": true
+        },
+        {
+          "val": "☯",
+          "safe": true
+        },
+        {
+          "val": "͝°",
+          "safe": true
+        },
+        {
+          "val": "°",
+          "safe": true
+        },
+        {
+          "val": "ಠ",
+          "safe": true
+        },
+        {
+          "val": "ಠ",
+          "safe": true
+        },
+        {
+          "val": "ಠೃ",
+          "safe": true
+        },
+        {
+          "val": "ರ",
+          "safe": true
+        },
+        {
+          "val": "ರೃ",
+          "safe": true
+        },
+        {
+          "val": "ರ",
+          "safe": true
+        },
+        {
+          "val": "◕",
+          "safe": true
+        },
+        {
+          "val": "˙",
+          "safe": true
+        },
+        {
+          "val": "◔",
+          "safe": true
+        },
+        {
+          "val": "͡°",
+          "safe": true
+        },
+        {
+          "val": "□",
+          "safe": true
+        },
+        {
+          "val": "⌐",
+          "safe": true
+        },
+        {
+          "val": "▀",
+          "safe": true
+        },
+        {
+          "val": "・",
+          "safe": true
+        },
+        {
+          "val": "◉",
+          "safe": true
+        },
+        {
+          "val": "‾́",
+          "safe": true
+        },
+        {
+          "val": "-",
+          "safe": true
+        },
+        {
+          "val": "⊙",
+          "safe": true
+        },
+        {
+          "val": "◐",
+          "safe": true
+        },
+        {
+          "val": "◖",
+          "safe": true
+        },
+        {
+          "val": "◗",
+          "safe": true
+        },
+        {
+          "val": "◑",
+          "safe": true
+        },
+        {
+          "val": "ヘ",
+          "safe": true
+        },
+        {
+          "val": "¬",
+          "safe": true
+        },
+        {
+          "val": "≖",
+          "safe": true
+        },
+        {
+          "val": "̿̿",
+          "safe": true
+        },
+        {
+          "val": "̿",
+          "safe": true
+        },
+        {
+          "val": "･ิ",
+          "safe": true
+        },
+        {
+          "val": "ิ",
+          "safe": true
+        },
+        {
+          "val": "◔",
+          "safe": true
+        },
+        {
+          "val": "ʘ̆",
+          "safe": true
+        },
+        {
+          "val": "ʘ",
+          "safe": true
+        },
+        {
+          "val": "☉",
+          "safe": true
+        },
+        {
+          "val": ";",
+          "safe": true
+        },
+        {
+          "val": "͡■",
+          "safe": true
+        },
+        {
+          "val": "■͡",
+          "safe": true
+        },
+        {
+          "val": "͡°",
+          "safe": true
+        },
+        {
+          "val": "°͡",
+          "safe": true
+        },
+        {
+          "val": "͡ຈ",
+          "safe": true
+        },
+        {
+          "val": "ຈ͡",
+          "safe": true
+        },
+        {
+          "val": "ຈ",
+          "safe": true
+        },
+        {
+          "val": "͡◕",
+          "safe": true
+        },
+        {
+          "val": "◕͡",
+          "safe": true
+        },
+        {
+          "val": "◕",
+          "safe": true
+        },
+        {
+          "val": "°",
+          "safe": true
+        },
+        {
+          "val": "◉",
+          "safe": true
+        },
+        {
+          "val": "͡",
+          "safe": true
+        },
+        {
+          "val": "º",
+          "safe": true
+        },
+        {
+          "val": "͡;",
+          "safe": true
+        },
+        {
+          "val": "͡☉",
+          "safe": true
+        },
+        {
+          "val": "°",
+          "safe": true
+        },
+        {
+          "val": "͜ಠ",
+          "safe": true
+        },
+        {
+          "val": "͡ʘ",
+          "safe": true
+        },
+        {
+          "val": "͡’",
+          "safe": true
+        },
+        {
+          "val": "•",
+          "safe": true
+        },
+        {
+          "val": "^",
+          "safe": true
+        },
+        {
+          "val": "◕",
+          "safe": true
+        },
+        {
+          "val": "▀̿",
+          "safe": true
+        },
+        {
+          "val": "ʘ͡",
+          "safe": true
+        },
+        {
+          "val": "–",
+          "safe": true
+        },
+        {
+          "val": "❛",
+          "safe": true
+        },
+        {
+          "val": "x",
+          "safe": true
+        },
+        {
+          "val": "ᴼ",
+          "safe": true
+        },
+        {
+          "val": "＾",
+          "safe": true
+        },
+        {
+          "val": "˘",
+          "safe": true
+        },
+        {
+          "val": "۞",
+          "safe": true
+        },
+        {
+          "val": "◯",
+          "safe": true
+        },
+        {
+          "val": "๑",
+          "safe": true
+        },
+        {
+          "val": "͡ᵔ",
+          "safe": true
+        },
+        {
+          "val": "͡°",
+          "safe": true
+        },
+        {
+          "val": "°",
+          "safe": true
+        },
+        {
+          "val": "͒",
+          "safe": true
+        },
+        {
+          "val": "σ",
+          "safe": true
+        },
+        {
+          "val": "✪",
+          "safe": true
+        },
+        {
+          "val": "♥",
+          "safe": true
+        },
+        {
+          "val": "❛ั",
+          "safe": true
+        },
+        {
+          "val": "•̀",
+          "safe": true
+        },
+        {
+          "val": "•́",
+          "safe": true
+        },
+        {
+          "val": "☉",
+          "safe": true
+        },
+        {
+          "val": "͠ຈ",
+          "safe": true
+        },
+        {
+          "val": "╥",
+          "safe": true
+        },
+        {
+          "val": "ᵒ̌",
+          "safe": true
+        },
+        {
+          "val": "ಡ",
+          "safe": true
+        },
+        {
+          "val": "͡°̲",
+          "safe": true
+        },
+        {
+          "val": "ᵕ",
+          "safe": true
+        },
+        {
+          "val": "ି",
+          "safe": true
+        },
+        {
+          "val": "ୖ",
+          "safe": true
+        },
+        {
+          "val": "ଵ",
+          "safe": true
+        },
+        {
+          "val": "்",
+          "safe": true
+        },
+        {
+          "val": "౦",
+          "safe": true
+        },
+        {
+          "val": "್",
+          "safe": true
+        },
+        {
+          "val": "ಠ",
+          "safe": true
+        },
+        {
+          "val": "ര",
+          "safe": true
+        },
+        {
+          "val": "ි",
+          "safe": true
+        },
+        {
+          "val": "ᓀ",
+          "safe": true
+        },
+        {
+          "val": "ᓂ",
+          "safe": true
+        },
+        {
+          "val": "⊡",
+          "safe": true
+        },
+        {
+          "val": "⊙",
+          "safe": true
+        },
+        {
+          "val": "⊚",
+          "safe": true
+        },
+        {
+          "val": "⊘",
+          "safe": true
+        },
+        {
+          "val": "⊗",
+          "safe": true
+        },
+        {
+          "val": "☯",
+          "safe": true
+        },
+        {
+          "val": "¤",
+          "safe": true
+        }
+      ]
+    };
 
     angular.module('donger', ['donger', 'dongerController']);
 
     angular.module('dongerController', [])
-      .controller('dongerController', function($scope) {
-        var $inputs = angular.element('.select input');
+      .controller('dongerController', ['$scope', '$location', function($scope, $location) {
+        var $inputs = angular.element('.select'),
+            directions = ['left', 'front', 'right'];
+      try{
+        $scope.donger = JSON.parse('[' + ($location.hash() || '') + ']');
+      } catch(e) {
         $scope.donger = '';
-        $scope.arms = $scope.body = $scope.eyes = false;
-        $scope.facing = 'forward';
-        $inputs.each(function(i) {
-          $(this).attr('min', 0);
-          $(this).attr('max', (parts[i].length == 0 ? 0 : parts[i].length - 1));
-        });
-        $inputs.on('input', updateDonger);
-        $scope.radioChange = function(){updateDonger();};
-        function updateDonger() {
-          var id = $(this).attr('id');
-          if(id){
-            var substr = id.substring(0, id.length-1);
+      }
+      console.log(parts.leftAccessory[0].val);
+      $scope.updateDonger = function(){
+        $scope.leftAccessory = $scope.donger[0];
+        $scope.leftArm = $scope.donger[1];
+        $scope.leftBody = $scope.donger[2];
+        $scope.leftFaceAccessory = $scope.donger[3];
+        $scope.leftEye = $scope.donger[4];
+        $scope.mouth = $scope.donger[5];
+        $scope.rightEye = $scope.donger[6];
+        $scope.rightFaceAccessory = $scope.donger[7];
+        $scope.rightBody = $scope.donger[8];
+        $scope.rightArm = $scope.donger[9];
+        $scope.rightAccessory = $scope.donger[10];
+        $scope.facing = directions[$scope.donger[11]];
+        $location.hash($scope.donger);
+      }
+        verifyDonger();
+        $scope.parts = parts;
 
-            if(((substr == 'arm' && !$scope.arms) || (substr == 'head' && !$scope.body) || (substr == 'eye' && !$scope.eyes))){
-              $('#' + substr + (id[id.length-1] == '1'? '2' : '1')).val($(this).val());
-            }
+        window.addEventListener('hashchange', function(){
+          try{
+            $scope.donger = JSON.parse('[' + ($location.hash() || '') + ']');
+          } catch(e) {
+            $scope.donger = '';
           }
-          var dongz = [];
-          $inputs.each(function(i) {
-            dongz.push(parts[i][this.value]);
-          });
-          var holder;
-          if($scope.facing == 'left'){
-            holder = dongz[8];
-            dongz[8] = dongz[9];
-            dongz[9] = holder;
-          } else if ($scope.facing == 'right'){
-            holder = dongz[2];
-            dongz[2] = dongz[1];
-            dongz[1] = holder;
-          }
-          $scope.donger = dongz.join('​');
-          if(id){$scope.$apply();}
+          $scope.updateDonger();
+          $scope.$apply();
+        });
+
+        $scope.changeFacing = function(i){
+          $scope.facing = directions[i];
+          $scope.updateUrl();
         };
-        updateDonger();
-      });
+
+        function verifyDonger(){
+          if($scope.donger.length == 12 &&
+            parts.leftAccessory.length >= $scope.donger[0]   && $scope.donger[0] >= 0 &&
+            parts.leftArm.length >= $scope.donger[1]         && $scope.donger[1] >= 0 &&
+            parts.leftBody.length >= $scope.donger[2]        && $scope.donger[2] >= 0 &&
+            parts.faceAccessory.length >= $scope.donger[3]   && $scope.donger[3] >= 0 &&
+            parts.eye.length >= $scope.donger[4]             && $scope.donger[4] >= 0 &&
+            parts.mouth.length >= $scope.donger[5]           && $scope.donger[5] >= 0 &&
+            parts.eye.length >= $scope.donger[6]             && $scope.donger[6] >= 0 &&
+            parts.faceAccessory.length >= $scope.donger[7]   && $scope.donger[7] >= 0 &&
+            parts.rightBody.length >= $scope.donger[8]       && $scope.donger[8] >= 0 &&
+            parts.rightArm.length >= $scope.donger[9]        && $scope.donger[9] >= 0 &&
+            parts.rightAccessory.length >= $scope.donger[10] && $scope.donger[10] >= 0 &&
+            directions.length >= $scope.donger[11]           && $scope.donger[11] >= 0){
+            } else {
+              $scope.donger = generateDong();
+            }
+            $scope.updateDonger();
+          }
+        $scope.generateDong = function(){$scope.donger = generateDong(); verifyDonger();}
+
+        function generateDong(){
+          var donger = [0,0,0,0,0,random(parts.mouth.length),0,0,0,0,0,random(directions.length)];
+          donger[4] = donger[6] = random(parts.eye.length);
+          donger[8] = donger[2] = random(parts.rightBody.length);
+          donger[9] = donger[1] = random(parts.rightArm.length);
+          return donger;
+        }
+
+        $scope.updateUrl = function(){
+          if($('.select .selected').length == 11){
+            $scope.donger = [];
+            $('.select').each(function(){
+              $scope.donger.push($(this).find('.selected').index());
+            });
+            $scope.donger.push(directions.indexOf($scope.facing))
+            $location.hash($scope.donger);
+          }
+        }
+
+        function random(max){
+          return Math.round(Math.random() * (max - 1));
+        }
+
+        $scope.getDonger = function(){
+          if($scope.facing == 'left'){
+            return parts.leftAccessory[$scope.leftAccessory].val + parts.leftArm[$scope.leftArm].val + parts.leftBody[$scope.leftBody].val + parts.faceAccessory[$scope.leftFaceAccessory].val + parts.eye[$scope.leftEye].val + parts.mouth[$scope.mouth].val + parts.eye[$scope.rightEye].val + parts.faceAccessory[$scope.rightFaceAccessory].val + parts.rightArm[$scope.rightArm].val + parts.rightBody[$scope.rightBody].val + parts.rightAccessory[$scope.rightAccessory].val;
+          } else if($scope.facing == 'right'){
+            return parts.leftAccessory[$scope.leftAccessory].val + parts.leftBody[$scope.leftBody].val + parts.leftArm[$scope.leftArm].val + parts.faceAccessory[$scope.leftFaceAccessory].val + parts.eye[$scope.leftEye].val + parts.mouth[$scope.mouth].val + parts.eye[$scope.rightEye].val + parts.faceAccessory[$scope.rightFaceAccessory].val + parts.rightBody[$scope.rightBody].val + parts.rightArm[$scope.rightArm].val + parts.rightAccessory[$scope.rightAccessory].val;
+          } else {
+            return parts.leftAccessory[$scope.leftAccessory].val + parts.leftArm[$scope.leftArm].val + parts.leftBody[$scope.leftBody].val + parts.faceAccessory[$scope.leftFaceAccessory].val + parts.eye[$scope.leftEye].val + parts.mouth[$scope.mouth].val + parts.eye[$scope.rightEye].val + parts.faceAccessory[$scope.rightFaceAccessory].val + parts.rightBody[$scope.rightBody].val + parts.rightArm[$scope.rightArm].val + parts.rightAccessory[$scope.rightAccessory].val;
+          }
+        }
+      }])
+      .directive('customSelect', ['$timeout', function($timeout){
+        return {
+          restrict: 'E',
+          require: 'ngModel',
+          template: '<div class=\'btn up\'></div><ul><li ng-repeat=\'option in options\'>{{option.val}}</li></ul><div class=\'btn dn\'></div>',
+          scope: {
+            options: '=options'
+          },
+          link: function(scope, el, attr, ngModel){
+            var em = el.append('<span style=\' padding: 0; margin: 0; height: 1em; visibility: hidden; position: fixed;\'</span>');
+            em = em.height();
+
+
+            el.addClass('select');
+
+            el.on('mousewheel', function(e) {
+              e.preventDefault();
+              if (e.originalEvent.wheelDelta > 0) {
+                $(this).find('.btn.up').click();
+              } else {
+                $(this).find('.btn.dn').click();
+              }
+            });
+
+            el.on('click', '.btn', function() {
+              var $this = $(this);
+              if ($this.hasClass('up')) {
+                UpdateSelected($this.parent().find('.selected').prev());
+              } else {
+                UpdateSelected($this.parent().find('.selected').next());
+              }
+            });
+
+            el.on('click', 'li', function() {
+              UpdateSelected(this);
+            });
+
+            function UpdateSelected(el) {
+              var $el = $(el);
+              if ($el.length > 0) {
+                $el.closest('ul').css({
+                  'top': -$el.position().top + em * .75
+                });
+                $el.siblings('.selected').removeClass('selected');
+                $el.addClass('selected');
+                ngModel.$setViewValue($el.index());
+                scope.$parent.updateUrl();
+              }
+            }
+
+            ngModel.$render = function(){
+              UpdateSelected(el.find('li')[ngModel.$viewValue]);;
+            };
+            $timeout(function(){UpdateSelected(el.find('li')[ngModel.$viewValue]);});
+          }
+        }
+      }]);
     </script>
     <style>
-    .select input[type=range] {
-      -webkit-appearance: slider-vertical;
-      writing-mode: bt-lr;
-      width: 40px;
-      height: 250px;
+
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      background: #ecf0f1;
     }
-    .select{
-      margin: auto;
+    * {
+      font-size: 32px;
+      box-sizing: border-box;
+    }
+    .input {
       display: flex;
-      flex-flow: row wrap;
-      justify-content: space-around;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      margin: auto 0;
     }
-    .container{
-      width: 600px;
-      margin: auto;
+
+    .select {
+      margin: 6px;
+      display: inline-block;
+      position: relative;
+      color: #bdc3c7;
+      height: 3em;
+      width: 4em;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+      background: white;
+    }
+
+    .select ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      top: .75em;
+      width: 100%;
+      transition: top .1s ease-in-out;
+      line-height: 1.5em;
+      display: block;
+      position: relative;
+      text-align: center;
+    }
+
+    .select li:active,
+    .select li.active {
+      background: #bdc3c7;
+      color: #ecf0f1;
+    }
+
+    .select li{
+      height: 1.5em;
+    }
+
+    .select *,
+    .select,
+    .facing-button,
+    .facing-button *,
+    .random{
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .select .selected {
+      color: black;
+      background: transparent;
+    }
+
+    .select .selected:active,
+    .select .selected.active {
+      background: transparent;
+      color: black;
+    }
+
+    .select .btn {
+      transition: box-shadow .1s ease-in-out;
+      text-align: center;
+      color: gray;
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: .75em;
+      background: #e74c3c;
+      box-shadow: inset 0px 0px 0px 0px rgba(0, 0, 0, 0.26);
+      z-index: 10;
+      line-height: .75em;
+    }
+
+    .select .btn:active,
+    .select .btn.active {
+      box-shadow: inset 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+
+    .select .btn:after {
+      font-size: 50%;
+      height: 0;
+      display: block;
+      color: white;
+    }
+
+    .select .btn.up:after {
+      content: '▲';
+    }
+
+    .select .btn.dn:after {
+      content: '▼';
+    }
+
+    .select .btn.up {
+      top: 0;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+
+    .select .btn.dn {
+      bottom: 0;
+      border-bottom-left-radius: 2px;
+      border-bottom-right-radius: 2px;
     }
     #output{
-      width: 100%;
+      left: 0;
+      right: 0;
+      top: 2em;
       text-align: center;
       line-height: 100%;
-      height: 52px;
-      font-size: 32px;
+      height: 3em;
+      position: absolute;
+      z-index: 15;
+      margin: 6px;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    #header{
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.52);
+      background: white;
+      z-index: 11;
+      height: 2em;
+      display: flex;
+      justify-content: flex-end;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      line-height: 2em;
+    }
+    #header span{
+      font-family: helvetica;
+      line-height: 1.333em;
+      margin-left: .375em;
+      margin-right: auto;
+      font-size: 1.5em;
+    }
+    .random:active{
+      box-shadow: inset 0px 2px 5px 0 rgba(0, 0, 0, 0.26), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    .facing-button, .random{
+      transition: box-shadow .1s ease-in-out;
+      box-shadow: inset 0px 2px 5px 0 rgba(0, 0, 0, 0), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+      margin: .375em;
+      height: 1.25em;
+      line-height: 1.25em;
+      color: black;
+      background: white;
+      border-radius: 2px;
+      display: inline-block;
+    }
+    .facing-button li{
+      transition: box-shadow .1s ease-in-out;
+      width: 1.25em;
+      text-align: center;
+      display: inline-block;
+    }
+    .facing-button li:first-child{
+      border-top-left-radius: 2px;
+      border-bottom-left-radius: 2px;
+    }
+    .facing-button li:last-child{
+      border-top-right-radius: 2px;
+      border-bottom-right-radius: 2px;
+    }
+    .facing-button li.selected{
+      text-align: center;
+      color: white;
+      content: '';
+      background: #e74c3c;
+      z-index: 10;
+    }
+    .facing-button li:active, .facing-button li.active{
+      box-shadow: inset 0px 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    .facing-button ul{
+      list-style: none;
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+    }
+    #output input{
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      line-height: 100%;
+      margin: 0;
+      top: 0;
     }
     </style>
   </head>
   <body>
   <div class='container' ng-controller='dongerController'>
-    <input id='output' type='text' ng-model='donger'>
-    <div class='select'>
-      <input id='accessory1' type='range' value=0>
-      <input id='arm1' type='range' value=0>
-      <input id='head1' type='range' value=0>
-      <input id='headAccessory1' type='range' value=0>
-      <input id='eye1' type='range' value=0>
-      <input id='mouth' type='range' value=0>
-      <input id='eye2' type='range' value=0>
-      <input id='headAccessory2' type='range' value=0>
-      <input id='head2' type='range' value=0>
-      <input id='arm2' type='range' value=0>
-      <input id='accessory2' type='range' value=0>
+    <div id='header'>
+      <span>dongz</span>
+      <div class='random' ng-click='generateDong()'>
+        randomize
+      </div>
+      <div class='facing-button'>
+        <ul>
+          <li ng-click='changeFacing(0)' ng-class='{selected: facing=="left"}'>◀</li><li ng-click='changeFacing(1)' ng-class='{selected: facing=="front"}'>●</li><li ng-click='changeFacing(2)' ng-class='{selected: facing=="right"}'>▶</li>
+        </ul>
+      </div>
     </div>
-    Independant Arms: <input type='checkbox' ng-model='arms'>
-    Independant Body: <input type='checkbox' ng-model='body'>
-    Independant Eyes: <input type='checkbox' ng-model='eyes'>
-    <br>
-    Style:
-    <input type='radio' name='type' ng-model='facing' value='forward' ng-change="radioChange()"> Facing Forward
-    <input type='radio' name='type' ng-model='facing' value='left' ng-change="radioChange()"> Facing Left
-    <input type='radio' name='type' ng-model='facing' value='right' ng-change="radioChange()"> Facing Right
+    <div id='output'><input type='text' ng-value='getDonger()' disabled></div>
+    <div class='input'>
+      <custom-select ng-model='leftAccessory' options='parts.leftAccessory'></custom-select>
+      <custom-select ng-model='leftArm' options='parts.leftArm'></custom-select>
+      <custom-select ng-model='leftBody' options='parts.leftBody'></custom-select>
+      <custom-select ng-model='leftFaceAccessory' options='parts.faceAccessory'></custom-select>
+      <custom-select ng-model='leftEye' options='parts.eye'></custom-select>
+      <custom-select ng-model='mouth' options='parts.mouth'></custom-select>
+      <custom-select ng-model='rightEye' options='parts.eye'></custom-select>
+      <custom-select ng-model='rightFaceAccessory' options='parts.faceAccessory'></custom-select>
+      <custom-select ng-model='rightBody' options='parts.rightBody'></custom-select>
+      <custom-select ng-model='rightArm' options='parts.rightArm'></custom-select>
+      <custom-select ng-model='rightAccessory' options='parts.rightAccessory'></custom-select>
+    </div>
   </div>
   </body></html>
