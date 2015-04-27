@@ -1569,9 +1569,10 @@
       }
 
       function loadDonger(){
-        var dong = atob($route.current.params.dong),
+        var dong,
           parsedDong = [];
         try{
+          dong = atob($route.current.params.dong);
           parsedDong = JSON.parse(dong);
         } catch(e){
           parsedDong = false;
@@ -1592,6 +1593,7 @@
         $scope.rightArm           = parsedDong[9];
         $scope.rightAccessory     = parsedDong[10];
         $scope.facing             = parsedDong[11];
+        $scope.updateUrl();
       }
 
       function generateDong(){
