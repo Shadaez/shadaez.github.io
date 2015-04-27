@@ -3,6 +3,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-route.min.js'></script>
     <script>
     var parts = {
       "leftAccessory": [
@@ -1497,104 +1498,132 @@
       ]
     };
 
-    angular.module('donger', ['donger', 'dongerController']);
+    ;
 
-    angular.module('dongerController', [])
-      .controller('dongerController', ['$scope', '$location', function($scope, $location) {
-        var $inputs = angular.element('.select'),
-            directions = ['left', 'front', 'right'];
-      try{
-        $scope.donger = JSON.parse('[' + ($location.hash() || '') + ']');
-      } catch(e) {
-        $scope.donger = '';
-      }
-      console.log(parts.leftAccessory[0].val);
-      $scope.updateDonger = function(){
-        $scope.leftAccessory = $scope.donger[0];
-        $scope.leftArm = $scope.donger[1];
-        $scope.leftBody = $scope.donger[2];
-        $scope.leftFaceAccessory = $scope.donger[3];
-        $scope.leftEye = $scope.donger[4];
-        $scope.mouth = $scope.donger[5];
-        $scope.rightEye = $scope.donger[6];
-        $scope.rightFaceAccessory = $scope.donger[7];
-        $scope.rightBody = $scope.donger[8];
-        $scope.rightArm = $scope.donger[9];
-        $scope.rightAccessory = $scope.donger[10];
-        $scope.facing = directions[$scope.donger[11]];
-        $location.hash($scope.donger);
-      }
-        verifyDonger();
-        $scope.parts = parts;
-
-        window.addEventListener('hashchange', function(){
-          try{
-            $scope.donger = JSON.parse('[' + ($location.hash() || '') + ']');
-          } catch(e) {
-            $scope.donger = '';
-          }
-          $scope.updateDonger();
-          $scope.$apply();
-        });
-
-        $scope.changeFacing = function(i){
-          $scope.facing = directions[i];
-          $scope.updateUrl();
-        };
-
-        function verifyDonger(){
-          if($scope.donger.length == 12 &&
-            parts.leftAccessory.length >= $scope.donger[0]   && $scope.donger[0] >= 0 &&
-            parts.leftArm.length >= $scope.donger[1]         && $scope.donger[1] >= 0 &&
-            parts.leftBody.length >= $scope.donger[2]        && $scope.donger[2] >= 0 &&
-            parts.faceAccessory.length >= $scope.donger[3]   && $scope.donger[3] >= 0 &&
-            parts.eye.length >= $scope.donger[4]             && $scope.donger[4] >= 0 &&
-            parts.mouth.length >= $scope.donger[5]           && $scope.donger[5] >= 0 &&
-            parts.eye.length >= $scope.donger[6]             && $scope.donger[6] >= 0 &&
-            parts.faceAccessory.length >= $scope.donger[7]   && $scope.donger[7] >= 0 &&
-            parts.rightBody.length >= $scope.donger[8]       && $scope.donger[8] >= 0 &&
-            parts.rightArm.length >= $scope.donger[9]        && $scope.donger[9] >= 0 &&
-            parts.rightAccessory.length >= $scope.donger[10] && $scope.donger[10] >= 0 &&
-            directions.length >= $scope.donger[11]           && $scope.donger[11] >= 0){
-            } else {
-              $scope.donger = generateDong();
+    angular.module('donger', ['ngRoute'])
+    .config(function($routeProvider){
+      $routeProvider
+        .when('/:dong', {controller: 'dongerController'})
+        .when('/', {controller: 'dongerController'})
+        .otherwise({
+          redirectTo: '/'
+        })
+    })
+    .run(['$route', '$rootScope', '$location', function ($route, $rootScope, $location) {
+        var original = $location.path;
+        $location.path = function (path, reload) {
+            if (reload === false) {
+                var lastRoute = $route.current;
+                var un = $rootScope.$on('$locationChangeSuccess', function () {
+                    $route.current = lastRoute;
+                    un();
+                });
             }
-            $scope.updateDonger();
+            return original.apply($location, [path]);
+        };
+    }])
+    .controller('dongerController', ['$scope', '$location', '$route', '$timeout', function($scope, $location, $route, $timeout) {
+      $scope.parts = parts;
+      $scope.$on('$routeChangeSuccess', loadDonger);
+
+      $scope.updateUrl = function(){
+        $timeout(function(){
+          $location.path('/' + btoa(JSON.stringify([
+            $scope.leftAccessory,
+            $scope.leftArm,
+            $scope.leftBody,
+            $scope.leftFaceAccessory,
+            $scope.leftEye,
+            $scope.mouth,
+            $scope.rightEye,
+            $scope.rightFaceAccessory,
+            $scope.rightBody,
+            $scope.rightArm,
+            $scope.rightAccessory,
+            $scope.facing
+          ])), false);
+        });
+      };
+
+      $scope.changeFacing = function(i){
+        $scope.facing = i;
+      }
+
+      $scope.getDonger = function(){
+          try{
+            if($scope.facing == 0){
+              return parts.leftAccessory[$scope.leftAccessory].val + parts.leftArm[$scope.leftArm].val + parts.leftBody[$scope.leftBody].val + parts.faceAccessory[$scope.leftFaceAccessory].val + parts.eye[$scope.leftEye].val + parts.mouth[$scope.mouth].val + parts.eye[$scope.rightEye].val + parts.faceAccessory[$scope.rightFaceAccessory].val + parts.rightArm[$scope.rightArm].val + parts.rightBody[$scope.rightBody].val + parts.rightAccessory[$scope.rightAccessory].val;
+            } else if($scope.facing == 2){
+              return parts.leftAccessory[$scope.leftAccessory].val + parts.leftBody[$scope.leftBody].val + parts.leftArm[$scope.leftArm].val + parts.faceAccessory[$scope.leftFaceAccessory].val + parts.eye[$scope.leftEye].val + parts.mouth[$scope.mouth].val + parts.eye[$scope.rightEye].val + parts.faceAccessory[$scope.rightFaceAccessory].val + parts.rightBody[$scope.rightBody].val + parts.rightArm[$scope.rightArm].val + parts.rightAccessory[$scope.rightAccessory].val;
+            } else {
+              return parts.leftAccessory[$scope.leftAccessory].val + parts.leftArm[$scope.leftArm].val + parts.leftBody[$scope.leftBody].val + parts.faceAccessory[$scope.leftFaceAccessory].val + parts.eye[$scope.leftEye].val + parts.mouth[$scope.mouth].val + parts.eye[$scope.rightEye].val + parts.faceAccessory[$scope.rightFaceAccessory].val + parts.rightBody[$scope.rightBody].val + parts.rightArm[$scope.rightArm].val + parts.rightAccessory[$scope.rightAccessory].val;
+            }
+          } catch(e){
+            return '';
           }
-        $scope.generateDong = function(){$scope.donger = generateDong(); verifyDonger();}
-
-        function generateDong(){
-          var donger = [0,0,0,0,0,random(parts.mouth.length),0,0,0,0,0,random(directions.length)];
-          donger[4] = donger[6] = random(parts.eye.length);
-          donger[8] = donger[2] = random(parts.rightBody.length);
-          donger[9] = donger[1] = random(parts.rightArm.length);
-          return donger;
         }
 
-        $scope.updateUrl = function(){
-          if($('.select .selected').length == 11){
-            $scope.donger = [];
-            $('.select').each(function(){
-              $scope.donger.push($(this).find('.selected').index());
-            });
-            $scope.donger.push(directions.indexOf($scope.facing))
-            $location.hash($scope.donger);
-          }
+      $scope.generateDong = function(){
+        $location.path('/' + btoa(generateDong()));
+        loadDonger();
+      }
+
+      function loadDonger(){
+        var dong = atob($route.current.params.dong),
+          parsedDong = [];
+        try{
+          parsedDong = JSON.parse(dong);
+        } catch(e){
+          parsedDong = false;
+        }
+        if(!verifyDong(parsedDong)){
+          parsedDong = generateDong();
         }
 
-        function random(max){
-          return Math.round(Math.random() * (max - 1));
-        }
+        $scope.leftAccessory      = parsedDong[0];
+        $scope.leftArm            = parsedDong[1];
+        $scope.leftBody           = parsedDong[2];
+        $scope.leftFaceAccessory  = parsedDong[3];
+        $scope.leftEye            = parsedDong[4];
+        $scope.mouth              = parsedDong[5];
+        $scope.rightEye           = parsedDong[6];
+        $scope.rightFaceAccessory = parsedDong[7];
+        $scope.rightBody          = parsedDong[8];
+        $scope.rightArm           = parsedDong[9];
+        $scope.rightAccessory     = parsedDong[10];
+        $scope.facing             = parsedDong[11];
+      }
 
-        $scope.getDonger = function(){
-          if($scope.facing == 'left'){
-            return parts.leftAccessory[$scope.leftAccessory].val + parts.leftArm[$scope.leftArm].val + parts.leftBody[$scope.leftBody].val + parts.faceAccessory[$scope.leftFaceAccessory].val + parts.eye[$scope.leftEye].val + parts.mouth[$scope.mouth].val + parts.eye[$scope.rightEye].val + parts.faceAccessory[$scope.rightFaceAccessory].val + parts.rightArm[$scope.rightArm].val + parts.rightBody[$scope.rightBody].val + parts.rightAccessory[$scope.rightAccessory].val;
-          } else if($scope.facing == 'right'){
-            return parts.leftAccessory[$scope.leftAccessory].val + parts.leftBody[$scope.leftBody].val + parts.leftArm[$scope.leftArm].val + parts.faceAccessory[$scope.leftFaceAccessory].val + parts.eye[$scope.leftEye].val + parts.mouth[$scope.mouth].val + parts.eye[$scope.rightEye].val + parts.faceAccessory[$scope.rightFaceAccessory].val + parts.rightBody[$scope.rightBody].val + parts.rightArm[$scope.rightArm].val + parts.rightAccessory[$scope.rightAccessory].val;
-          } else {
-            return parts.leftAccessory[$scope.leftAccessory].val + parts.leftArm[$scope.leftArm].val + parts.leftBody[$scope.leftBody].val + parts.faceAccessory[$scope.leftFaceAccessory].val + parts.eye[$scope.leftEye].val + parts.mouth[$scope.mouth].val + parts.eye[$scope.rightEye].val + parts.faceAccessory[$scope.rightFaceAccessory].val + parts.rightBody[$scope.rightBody].val + parts.rightArm[$scope.rightArm].val + parts.rightAccessory[$scope.rightAccessory].val;
-          }
+      function generateDong(){
+        var dong = [0,0,0,0,0,0,0,0,0,0,0,0];
+        dong[1] = dong[9] = random(parts.leftArm.length);
+        dong[2] = dong[8] = random(parts.leftBody.length);
+        dong[4] = dong[6] = random(parts.eye.length);
+        dong[5] = random(parts.mouth.length);
+        dong[11] = random(3);
+        return dong;
+
+        function random(l){
+          return Math.round(Math.random() * (l - 1));
         }
+      }
+
+      function verifyDong(dong){
+        return (dong.length == 12 &&
+        parts.leftAccessory.length > dong[0]   && dong[0] >= 0 &&
+        parts.leftArm.length > dong[1]         && dong[1] >= 0 &&
+        parts.leftBody.length > dong[2]        && dong[2] >= 0 &&
+        parts.faceAccessory.length > dong[3]   && dong[3] >= 0 &&
+        parts.eye.length > dong[4]             && dong[4] >= 0 &&
+        parts.mouth.length > dong[5]           && dong[5] >= 0 &&
+        parts.eye.length > dong[6]             && dong[6] >= 0 &&
+        parts.faceAccessory.length > dong[7]   && dong[7] >= 0 &&
+        parts.rightBody.length > dong[8]       && dong[8] >= 0 &&
+        parts.rightArm.length > dong[9]        && dong[9] >= 0 &&
+        parts.rightAccessory.length > dong[10] && dong[10] >= 0 &&
+        2 >= dong[11]                          && dong[11] >= 0)
+      }
+
       }])
       .directive('customSelect', ['$timeout', function($timeout){
         return {
@@ -1607,7 +1636,6 @@
           link: function(scope, el, attr, ngModel){
             var em = el.append('<span style=\' padding: 0; margin: 0; height: 1em; visibility: hidden; position: fixed;\'</span>');
             em = em.height();
-
 
             el.addClass('select');
 
@@ -1875,11 +1903,11 @@
     <div id='header'>
       <span>dongz</span>
       <div class='random' ng-click='generateDong()'>
-        randomize
+        random
       </div>
       <div class='facing-button'>
         <ul>
-          <li ng-click='changeFacing(0)' ng-class='{selected: facing=="left"}'>◀</li><li ng-click='changeFacing(1)' ng-class='{selected: facing=="front"}'>●</li><li ng-click='changeFacing(2)' ng-class='{selected: facing=="right"}'>▶</li>
+          <li ng-click='changeFacing(0)' ng-class='{selected: facing=="0"}'>◀</li><li ng-click='changeFacing(1)' ng-class='{selected: facing=="1"}'>●</li><li ng-click='changeFacing(2)' ng-class='{selected: facing=="2"}'>▶</li>
         </ul>
       </div>
     </div>
