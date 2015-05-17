@@ -1,0 +1,126 @@
+<html>
+<head>
+  <style>
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    * *, *{
+      box-sizing: border-box;
+    }
+
+    html, body{
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    #url{
+      top: 10px;
+      position: absolute;
+      width: 500px;
+    }
+  </style>
+</head>
+<body>
+  <input id='url' type=text placeholder='Image URL'>
+  <script>
+    var canvas = document.createElement('canvas'),
+      ctx = canvas.getContext('2d'),
+      img = new Image(),
+      boxSize = 50,
+      boxPosition = 0,
+      safeImg = new Image(),
+      start = {
+        x: 0,
+        y: 0
+      },
+      boxStart = {
+        x: 0,
+        y: 0
+      }
+
+    img.crossOrigin = "Anonymous";
+    img.src = 'http://i.imgur.com/kfHSkKQ.jpg';
+
+    canvas.height = 500;
+    canvas.width = 500;
+    document.getElementsByTagName('body')[0].appendChild(canvas);
+
+    img.addEventListener('load', function(){
+    canvas.width = img.width;
+    canvas.height = img.height;
+    safeImg = img;
+    document.getElementById('url').style.width = img.width + 'px';
+    });
+
+    document.addEventListener('mousemove', function(e){
+    if(e.which == 1){
+      boxPosition += e.movementX;
+      boxSize += e.movementY;
+      boxSize = Math.floor(clamp(boxSize, 10, (canvas.height> canvas.width?canvas.width:canvas.height)/5));
+      boxPosition = clamp(boxPosition, 0, canvas.width - boxSize);
+    }
+    });
+
+    canvas.addEventListener('touchstart', function(e){
+    touchobj = e.changedTouches[0] // reference first touch point
+          start.x = parseInt(touchobj.clientX);
+          start.y = parseInt(touchobj.clientY);
+          boxStart.y = boxSize;
+          boxStart.x = boxPosition;
+    });
+
+    canvas.addEventListener('touchmove', function(e){
+    touchobj = e.changedTouches[0] // reference first touch point for this event
+    var dist = {x: parseInt(touchobj.clientX) - start.x,
+                y: parseInt(touchobj.clientY) - start.y};
+      boxPosition = boxStart.x + dist.x;
+      boxSize = boxStart.y + dist.y;
+    console.log(start);
+      boxSize = Math.floor(clamp(boxSize, 10, (canvas.height > canvas.width?canvas.width:canvas.height)/5));
+      boxPosition = clamp(boxPosition, 0, canvas.width - boxSize);
+    });
+
+    document.getElementById('url').addEventListener('input', function(){
+    img.src = this.value;
+    });
+
+
+    function update(){
+    ctx.drawImage(safeImg, 0, 0);
+    var fifth = Math.round(canvas.height/5);
+    for(var x = 0; x < 5; x++){
+      ctx.beginPath();
+      ctx.rect(boxPosition + .5, Math.round(fifth * x + fifth/2 - boxSize/2) + .5, boxSize, boxSize);
+      ctx.fillStyle = averageColor(ctx.getImageData(boxPosition, (fifth * x + Math.round(fifth/2 - boxSize/4)), boxSize, Math.round(boxSize/2)));
+      ctx.fill();
+      ctx.stroke();
+      ctx.closePath();
+    }
+    requestAnimationFrame(update)
+    }
+    update();
+
+    function averageColor(img){
+    var x = 0,
+        rgb = {
+          r: 0, g: 0, b: 0
+        };
+    while(x<img.data.length-1){
+      rgb.r += img.data[x];
+      rgb.g += img.data[x+1];
+      rgb.b += img.data[x+2];
+      x = x+4;
+    }
+    return 'rgba(' + Math.floor(rgb.r/(img.data.length/4)) + ',' + Math.floor(rgb.g/(img.data.length/4)) + ',' + Math.floor(rgb.b/(img.data.length/4)) + ', 1)';
+    }
+
+    function clamp(num, min, max) {
+    return Math.min(Math.max(num, min), max);
+    };
+  </script>
+</body>
+</html>
