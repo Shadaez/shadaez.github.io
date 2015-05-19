@@ -5,3 +5,9 @@
   font-family: "comic sans ms";
   text-shadow: 0 0 6px #000000,1px 1px 0 #D00,2px 2px 0 #FE6230,3px 3px 0 #FEF600,4px 4px 0 #00BC00,5px 5px 0 #009BFE,6px 6px 0 #000083,7px 7px 0 #30009B;
 }
+
+
+.channel-emote{
+  max-width: 64px;
+  max-height: 64px;
+}
