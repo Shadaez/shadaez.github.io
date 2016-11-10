@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Mega64 Archives",
+    "link": "http://mega64archives.github.io/#/",
+    "screenshot": "/img/m64.png",
+    "description": "Built with Angular, a website organizing old Mega64 podcasts, aftershows, and other videos that were hard to locate."
+  },
+  {
+    "name": "StarboundServerManager",
+    "link": "https://github.com/Shadaez/StarboundServerManager",
+    "screenshot": "/img/starbound.gif",
+    "description": "Early project, Node backend monitors your Starbound (a video game) server and monitors chat, location of active systems, users, and server status and displays them on an Angular frontend."
+  },
+  {
+    "name": "palette",
+    "link": "http://shadaez.github.io/palette/",
+    "screenshot": "/img/palette.gif",
+    "description": "Samples and averages colors in a square to generate a pallette of colors from the image. Useless, but pretty. Canvas."
+  },
+  {
+    "name": "dongz",
+    "link": "http://shadaez.github.io/dong/",
+    "screenshot": "/img/dong.png",
+    "description": "A kaomoji, or \"donger\" generator / builder. Angular."
+  },
+  {
+    "name": "Memecube",
+    "link": "http://shadaez.github.io/memecube/",
+    "screenshot": "/img/memecube.png",
+    "description": "A horrible thing I made as an joke with some friends. Uses Imgur API to fetch memes and display them on a 3d rotating cube."
+  },
+  {
+    "name": "TheCrewTelemetry",
+    "link": "https://github.com/Shadaez/theCrewTelemetry",
+    "screenshot": "/img/tcc.png",
+    "description": "NPM module to read telemetry data from Ubisoft's The Crew"
+  },
+  {
+    "name": "RC Plane UI",
+    "link": "http://shadaez.github.io/canvasUI/",
+    "screenshot": "/img/canvasui.png",
+    "description": "A UI I was contracted to create (the design insn't mine). It's made to read a csv of data from an RC plane and display altitude, speed, degrees or rotation, etc. It's currently static due to no data being fed into it."
+  },
+  {
+    "name": "My Codepen",
+    "link": "http://codepen.io/Shadaez/",
+    "screenshot": "/img/codepen.png",
+    "description": "Various little things I've created. Sometimes I use Codepen for quick iterations while I work, or to create css3 animations I record and make into gifs."
+  }
+]

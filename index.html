@@ -4,20 +4,60 @@ layout: default
 
 <div class="home">
 
-  <h1 class="page-heading">Posts</h1>
+  <h1 class="page-heading">Skills</h1>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
+  <ul class="post-list skill">
+    {% for skill in site.data.skills %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
-
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
+        <span class="post-meta">{{ skill.name }}</span>
       </li>
     {% endfor %}
   </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <h1 class="page-heading">Portfolio</h1>
 
+  <ul class="post-list">
+    {% for project in site.data.projects %}
+      <li>
+        <h2>
+          <a class="post-link" href="{{ project.url }}">{{ project.name }}</a>
+        </h2>
+        <img class="post-screen" src="{{ project.screenshot }}">
+        <p class="post-description"> {{ project.description }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h1 class="page-heading">Work Experience</h1>
+
+  <ul class="post-list">
+    {% for work in site.data.experience %}
+      <li>
+        <span class="post-meta">{{ work.when }}</span>
+        <h2>{{ work.name }}</h2>
+        <ul class="skill">
+          {% for skill in work.skills %}
+            <li>
+              <span class="post-meta">{{skill}}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
 </div>
+
+
+
+
+<!-- <ul class="post-list">
+  {% for project in site.projects %}
+    <li>
+      <span class="post-meta">{{ project.name }}</span>
+
+      <h2>
+        <a class="post-link" href="{{ project.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      </h2>
+    </li>
+  {% endfor %}
+</ul> -->
