@@ -6,6 +6,12 @@
     "description": "Built with Angular, a website organizing old Mega64 podcasts, aftershows, and other videos that were hard to locate."
   },
   {
+    "name": "Breeze Blow Dry Bar",
+    "link": "http://www.breezeblowdrybar.com",
+    "screenshot": "/img/breeze.png",
+    "description": "Built with with a heavily edited template base, since that was best for the client. Unfortunately they seem to have switched web consultants and a new, but very similar, site is up."
+  },
+  {
     "name": "StarboundServerManager",
     "link": "https://github.com/Shadaez/StarboundServerManager",
     "screenshot": "/img/starbound.gif",
@@ -33,7 +39,7 @@
     "name": "TheCrewTelemetry",
     "link": "https://github.com/Shadaez/theCrewTelemetry",
     "screenshot": "/img/tcc.png",
-    "description": "NPM module to read telemetry data from Ubisoft's The Crew"
+    "description": "NPM module to read telemetry data from Ubisoft's The Crew."
   },
   {
     "name": "RC Plane UI",

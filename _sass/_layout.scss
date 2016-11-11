@@ -189,6 +189,14 @@
     color: $grey-color;
 }
 
+.post-screen {
+    margin: auto;
+    background-size: contain;
+    background-position: center;
+    width: $spacing-unit * 5;
+    height: $spacing-unit * 5;
+}
+
 .post-link {
     display: block;
     font-size: 24px;

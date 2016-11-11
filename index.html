@@ -17,12 +17,12 @@ layout: default
   <h1 class="page-heading">Portfolio</h1>
 
   <ul class="post-list">
-    {% for project in site.data.projects %}
+    {% for project in site.data.projects limit:3 %}
       <li>
         <h2>
           <a class="post-link" href="{{ project.url }}">{{ project.name }}</a>
         </h2>
-        <img class="post-screen" src="{{ project.screenshot }}">
+        <div class="post-screen" style="background-image: url({{ project.screenshot }})"></div>
         <p class="post-description"> {{ project.description }}</p>
       </li>
     {% endfor %}
