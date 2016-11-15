@@ -198,6 +198,7 @@
 
     > li {
         margin-bottom: $spacing-unit;
+        clear: both;
     }
 }
 
@@ -210,8 +211,11 @@
     margin: auto;
     background-size: contain;
     background-position: center;
+    background-repeat: no-repeat;
     width: $spacing-unit * 5;
     height: $spacing-unit * 5;
+    float: left;
+    margin-right: $spacing-unit;
 }
 
 .post-link {
