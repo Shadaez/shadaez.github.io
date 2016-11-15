@@ -181,6 +181,15 @@
 
     > li {
         margin-bottom: $spacing-unit;
+        &.skill{
+          display: inline;
+          &:after{
+            content:','
+            display: inline;  
+            &:last-of-type{
+              content: '';
+            }
+        }
     }
 }
 
