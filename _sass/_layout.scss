@@ -179,6 +179,10 @@
     margin-left: 0;
     list-style: none;
 
+    &:after{
+      clear: both;
+    }
+
     &.skill{
       > li{
         display: inline;
