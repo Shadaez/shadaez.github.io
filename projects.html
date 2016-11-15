@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="home">
+  <h1 class="page-heading">Portfolio</h1>
+
+  <ul class="post-list">
+    {% for project in site.data.projects %}
+      <li>
+        <h2>
+          <a class="post-link" href="{{ project.link }}">{{ project.name }}</a>
+        </h2>
+        <div class="post-screen" style="background-image: url({{ project.screenshot }})"></div>
+        <p class="post-description"> {{ project.description }}</p>
+      </li>
+    {% endfor %}
+    <li><h2><a href="/projects.html">More</a></h2></li>
+  </ul>
+</div>
