@@ -180,7 +180,9 @@
     list-style: none;
 
     &.skill{
-      display: inline;
+      > li{
+        display: inline;
+      }
       .post-meta:after{
         content: ',';
         display: inline;
