@@ -179,6 +179,12 @@
     margin-left: 0;
     list-style: none;
 
+    &:after{
+      clear: both;
+      display: inline-block;
+      content: '';
+    }
+
     &.skill{
       > li{
         display: inline;
@@ -193,10 +199,6 @@
           content: ',';
           display: inline;
         }
-      }
-
-      &:after{
-        clear: both;
       }
     }
 
