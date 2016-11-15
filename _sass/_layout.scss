@@ -182,12 +182,16 @@
     &.skill{
       > li{
         display: inline;
-      }
-      .post-meta:after{
-        content: ',';
-        display: inline;
+
         &:last-of-type{
-          content: '';
+          .post-meta:after{
+            content: '';
+          }
+        }
+
+        .post-meta:after{
+          content: ',';
+          display: inline;
         }
       }
     }
