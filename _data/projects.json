@@ -12,6 +12,36 @@
     "description": "Built with with a heavily edited template base, since that was best for the client. Unfortunately they seem to have switched web consultants and a new, but very similar, site is up."
   },
   {
+    "name": "CFSI.org",
+    "link": "http://cfsi.org/",
+    "screenshot": "/img/cfsi.jpg",
+    "description": "Updated pages to maintain up to date information on events & pricing."
+  },
+  {
+    "name": "Alive STL",
+    "link": "http://alivestl.org/#",
+    "screenshot": "/img/astl.jpg",
+    "description": "Updated pages to maintain up to date information on events."
+  },
+  {
+    "name": "US International Food",
+    "link": "http://usinternationalfood.com/",
+    "screenshot": "/img/usi.jpg",
+    "description": "Updated pages to maintain up to date information on events. Edited the entire site to the Chinese version, with provided translations."
+  },
+  {
+    "name": "Johnson Development Co",
+    "link": "http://johnsondevelopmentco.com/",
+    "screenshot": "/img/jdco.jpg",
+    "description": "Updated pages to maintain up to date information. Used batch editing programs to quickly create thumbnails for images on slideshow."
+  },
+  {
+    "name": "Peter Pap Oriental Rugs",
+    "link": "http://peterpap.com/",
+    "screenshot": "/img/pap.jpg",
+    "description": "Updated pages to maintain up to date information. Created emails."
+  },
+  {
     "name": "StarboundServerManager",
     "link": "https://github.com/Shadaez/StarboundServerManager",
     "screenshot": "/img/starbound.gif",
