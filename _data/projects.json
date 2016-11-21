@@ -6,6 +6,12 @@
     "description": "Built with Angular, a website organizing old Mega64 podcasts, aftershows, and other videos that were hard to locate."
   },
   {
+    "name": "This Site",
+    "link": "http://shadaez.github.io/",
+    "screenshot": "/img/this.png",
+    "description": "Built with Jekyll, data is json. Freely hosted with Github. Minor edits to default theme, but it was simple and fit a resume-style site so I left it mostly as-is."
+  },
+  {
     "name": "Breeze Blow Dry Bar",
     "link": "http://www.breezeblowdrybar.com",
     "screenshot": "/img/breeze.jpg",
