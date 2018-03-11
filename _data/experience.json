@@ -1,9 +1,23 @@
 [
   {
+    "name": "Multiplica US",
+    "title": "Optimization Developer",
+    "when": "July 2017 - March 2018",
+    "skills": [
+      "Lead optimization developer for a major cruise line account.",
+      "Created a new system for sales which saved many hours.",
+      "Created a QA system for client."
+      "Create A/B tests.",
+      "Create \"experiences\" to make edits to live sites.",
+      "Site redesigns for mobile."
+    ]
+  },
+  {
     "name": "Windmill House Consulting",
     "title": "Web Developer",
-    "when": "Mid 2015 - Present",
-    "skills":  ["Make edits to web pages and images with a quick turnaround.",
+    "when": "Mid 2015 - Mid 2017",
+    "skills":  [
+      "Make edits to web pages and images with a quick turnaround.",
       "Rewrote websites, repurposing old content into a modern, responsive design.",
       "Create sites using Server Side Includes.",
       "Image manipulation for banners, slides, logos.",
