@@ -1,5 +1,6 @@
 [
   {
+<<<<<<< HEAD
     "name": "Multiplica US",
     "title": "Optimization Developer",
     "when": "July 2017 - March 2018",
@@ -14,6 +15,9 @@
   },
   {
     "name": "Windmill House Consulting",
+=======
+    "name": "Windmill Hill Consulting",
+>>>>>>> e9affd00e625b2b9d2b484d113cc080f99af1ba9
     "title": "Web Developer",
     "when": "Mid 2015 - Mid 2017",
     "skills":  [
