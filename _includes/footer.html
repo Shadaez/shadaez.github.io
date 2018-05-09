@@ -42,7 +42,7 @@
   screens.addEventListener("click", showScreen, false);
 
   function showScreen(e) {
-      if (hasClass(e.target, "post-screen")) {
+      if (hasClass(e.target, "post-screen") || hasClass(e.target.parentElement, "post-screen")) {
         var screen = e.target;
         var modal = document.createElement("div");
         modal.innerHTML = "<div class=\"modal-container\"><div class=\"js-close-modal close-modal\">x</div><div class=\"post-screen\"></div>";
