@@ -26,7 +26,7 @@ layout: default
           <div class="post-screen" style="background-image: url({{ project.screenshot }})"></div>
         {% endif %}
         {% if project.video %}
-          <div class="post-screen"><video src="{{project.video}}" autoplay muted></video></div>
+          <div class="post-screen"><video src="{{project.video}}" autoplay muted loop></video></div>
         {% endif %}
         <p class="post-description"> {{ project.description }}</p>
       </li>
