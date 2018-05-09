@@ -26,15 +26,9 @@
     "title": "Web Developer",
     "when": "Early 2014 - Present",
     "skills": [
-      "Fixed JavaScript code for a company’s ad modal that was hindering ad revenue for years.",
-      "Created complex regular expression generator to correct and/or highlight arabic names in a text document from a provided dictionary of names.",
-      "Coded a high performance HTML5 canvas user interface for low spec Raspberry Pi computer.",
-      "Convert Flash banner animation to HTML5 with CSS3 animation.",
-      "Diagnose and fix problems in poorly written and undocumented code.",
-      "Edited Tumblr theme.",
-      "A/B Testing with Optimizely.",
-      "Other general work including fixing PHP, CSS and Javascript bugs, developing new sites using Angular.",
-      "PSD to HTML."
+      "Created video header & other A/B work for Couchsurfing.com",
+      "A/B optimization for MossyOak.com",
+      "Redesigned a flash banner with CSS animations & JS audio AP"
     ]
   },
   {

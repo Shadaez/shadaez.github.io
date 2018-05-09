@@ -42,8 +42,11 @@
   screens.addEventListener("click", showScreen, false);
 
   function showScreen(e) {
-      if (hasClass(e.target, "post-screen") || hasClass(e.target.parentElement, "post-screen")) {
+      var isVideo = hasClass(e.target.parentElement, "post-screen");
+      if (hasClass(e.target, "post-screen") || isVideo) {
         var screen = e.target;
+        if(isVideo)
+          screen = e.target.parentElement;
         var modal = document.createElement("div");
         modal.innerHTML = "<div class=\"modal-container\"><div class=\"js-close-modal close-modal\">x</div><div class=\"post-screen\"></div>";
         modal.className += " modal-background ";
