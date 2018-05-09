@@ -51,19 +51,23 @@
         modal.innerHTML = "<div class=\"modal-container\"><div class=\"js-close-modal close-modal\">x</div><div class=\"post-screen\"></div>";
         modal.className += " modal-background ";
         var postScreen = modal.getElementsByClassName('post-screen')[0];
-        postScreen.innerHTML = e.target.innerHTML;
-        postScreen.style.backgroundImage = e.target.style.backgroundImage;
+        postScreen.innerHTML = screen.innerHTML;
+        postScreen.style.backgroundImage = screen.style.backgroundImage;
         modal.getElementsByClassName('js-close-modal')[0].addEventListener('click', function(){modal.remove()}, false);
         modal.addEventListener('click', function(){
           if (modal !== event.target) return;
           modal.remove()
         }, false);
-        var url = e.target.style.backgroundImage.replace(/url\(|\)|'|"/gi, "");
-        var img = new Image();
-        img.src = url;
-        img.onload = function(){
-          postScreen.style.width = img.width + 'px';
-          postScreen.style.height = img.height + 'px';
+        if(!isVideo){
+          var url = e.target.style.backgroundImage.replace(/url\(|\)|'|"/gi, "");
+          var img = new Image();
+          img.src = url;
+          img.onload = function(){
+            postScreen.style.width = img.width + 'px';
+            postScreen.style.height = img.height + 'px';
+          }
+        } else {
+          postScreen.style.width = postScreen.style.height = "auto";
         }
         document.body.appendChild(modal);
       }
