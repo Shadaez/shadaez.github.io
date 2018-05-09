@@ -22,7 +22,12 @@ layout: default
         <h2>
           <a class="post-link" href="{{ project.link }}">{{ project.name }}</a>
         </h2>
-        <div class="post-screen" style="background-image: url({{ project.screenshot }})"></div>
+        {% if project.screenshot %}
+          <div class="post-screen" style="background-image: url({{ project.screenshot }})"></div>
+        {% endif %}
+        {% if project.video %}
+          <div class="post-screen"><video src="{{project.video}}" autoplay muted></video></div>
+        {% endif %}
         <p class="post-description"> {{ project.description }}</p>
       </li>
     {% endfor %}

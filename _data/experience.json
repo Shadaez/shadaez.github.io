@@ -1,29 +1,25 @@
-[
-  {
+[{
     "name": "Multiplica US",
     "title": "Optimization Developer",
     "when": "July 2017 - March 2018",
     "skills": [
-      "Lead optimization developer for a major cruise line account.",
-      "Created a new system for sales which saved many hours.",
-      "Created a QA system for client.",
-      "Create A/B tests.",
-      "Create \"experiences\" to make edits to live sites.",
-      "Site redesigns for mobile."
+      "Lead developer on post cruise products Royal Caribbean account.",
+      "Rewrote Royal Caribbean’s sale system in JS, CSS, to be more stable. Saved many hours a month in bug fixing.",
+      "Created a ‘live previewing’ system with JS that allowed A/B tests and experiences to be previewed as they’d appear on-site, nearly halving the QA time required.",
+      "Reverse engineer APIs to implement bug fixes in Javascript.",
+      "Using Monetate injected CSS and JS, Implemented mobile design for Apple Vacations.",
+      "Implemented A/B tests on many sites including Royal Caribbean, Celebrity Cruises, Apple Vacations, Azamara, and Foreyes.",
+      "Travelled to meet with clients to discuss work."
     ]
   },
   {
     "name": "Windmill Hill Consulting",
     "title": "Web Developer",
     "when": "Mid 2015 - Mid 2017",
-    "skills":  [
-      "Make edits to web pages and images with a quick turnaround.",
-      "Rewrote websites, repurposing old content into a modern, responsive design.",
-      "Create sites using Server Side Includes.",
-      "Image manipulation for banners, slides, logos.",
-      "Created ads for print magazine.",
-      "Created and edited PDFs forms.",
-      "PSD to HTML."]
+    "skills": [
+      "Implemented a site redesign of Breeze Blow Dry Bar",
+      "Maintained Wordpress and custom sites on CFSI.org, AliveSTL.org, fuelstl.com"
+    ]
   },
   {
     "name": "Freelance Web Developer",
