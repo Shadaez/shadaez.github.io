@@ -76,12 +76,6 @@
     "description": "A kaomoji, or \"donger\" generator / builder. Angular."
   },
   {
-    "name": "Memecube",
-    "link": "http://shadaez.github.io/memecube/",
-    "screenshot": "/img/memecube.png",
-    "description": "A horrible thing I made as an joke with some friends. Uses Imgur API to fetch memes and display them on a 3d rotating cube."
-  },
-  {
     "name": "TheCrewTelemetry",
     "link": "https://github.com/Shadaez/theCrewTelemetry",
     "screenshot": "/img/tcc.png",
